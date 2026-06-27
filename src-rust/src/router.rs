@@ -304,10 +304,7 @@ pub fn calculate_route(
     }
 
     let (dist, prev_state) = dijkstra(graph, src_idx);
-    let (path, total_latency) = match reconstruct_path(&dist, &prev_state, graph, src_idx, dst_idx) {
-        Some(r) => r,
-        None => return None,
-    };
+    let (path, total_latency) = reconstruct_path(&dist, &prev_state, graph, src_idx, dst_idx)?;
     if path[0] != src_idx || path[path.len() - 1] != dst_idx {
         return None;
     }
