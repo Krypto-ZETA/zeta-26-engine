@@ -1,0 +1,2012 @@
+{
+  "universe_metadata": {
+    "system_name": "Multiverse-200",
+    "speed_of_light_kms": 300000,
+    "max_void_hop_distance_km": 50000000,
+    "coordinate_scale_unit_km": 100000,
+    "tower_processing_delay_ms": 7,
+    "fiber_speed_fraction": 0.67
+  },
+  "nodes": [
+    {
+      "id": "Planet_1",
+      "codex": 5,
+      "x": 44.6986,
+      "y": -6.7105,
+      "radius_km": 6268.3,
+      "active_towers": 13,
+      "atmosphere_thickness_km": 231.6,
+      "refraction_index": 2.9746
+    },
+    {
+      "id": "Planet_2",
+      "codex": 6,
+      "x": -174.0914,
+      "y": -48.1708,
+      "radius_km": 39896.4,
+      "active_towers": 16,
+      "atmosphere_thickness_km": 409.4,
+      "refraction_index": 2.9464
+    },
+    {
+      "id": "Planet_3",
+      "codex": 8,
+      "x": 76.5615,
+      "y": 207.8181,
+      "radius_km": 30194.5,
+      "active_towers": 29,
+      "atmosphere_thickness_km": 435,
+      "refraction_index": 2.9854
+    },
+    {
+      "id": "Planet_4",
+      "codex": 10,
+      "x": -201.2161,
+      "y": 141.2035,
+      "radius_km": 28646.3,
+      "active_towers": 32,
+      "atmosphere_thickness_km": 370.1,
+      "refraction_index": 1.9788
+    },
+    {
+      "id": "Planet_5",
+      "codex": 12,
+      "x": 229.4934,
+      "y": 166.4269,
+      "radius_km": 69616.2,
+      "active_towers": 26,
+      "atmosphere_thickness_km": 431.4,
+      "refraction_index": 1.8325
+    },
+    {
+      "id": "Planet_6",
+      "codex": 14,
+      "x": 2.1488,
+      "y": 137.9434,
+      "radius_km": 63335.9,
+      "active_towers": 14,
+      "atmosphere_thickness_km": 314.1,
+      "refraction_index": 2.6699
+    },
+    {
+      "id": "Planet_7",
+      "codex": 16,
+      "x": 52.9514,
+      "y": -101.5109,
+      "radius_km": 53231.4,
+      "active_towers": 28,
+      "atmosphere_thickness_km": 6.6,
+      "refraction_index": 2.1567
+    },
+    {
+      "id": "Planet_8",
+      "codex": 18,
+      "x": 150.3127,
+      "y": 248.7013,
+      "radius_km": 14918.9,
+      "active_towers": 15,
+      "atmosphere_thickness_km": 147.1,
+      "refraction_index": 2.6475
+    },
+    {
+      "id": "Planet_9",
+      "codex": 20,
+      "x": -134.1521,
+      "y": -205.2156,
+      "radius_km": 40691,
+      "active_towers": 15,
+      "atmosphere_thickness_km": 204.1,
+      "refraction_index": 1.8373
+    },
+    {
+      "id": "Planet_10",
+      "codex": 24,
+      "x": 231.9066,
+      "y": 104.3692,
+      "radius_km": 6017.1,
+      "active_towers": 13,
+      "atmosphere_thickness_km": 286.2,
+      "refraction_index": 2.1011
+    },
+    {
+      "id": "Planet_11",
+      "codex": 30,
+      "x": 59.0211,
+      "y": 62.4858,
+      "radius_km": 63749,
+      "active_towers": 7,
+      "atmosphere_thickness_km": 93.5,
+      "refraction_index": 1.1007
+    },
+    {
+      "id": "Planet_12",
+      "codex": 36,
+      "x": 17.829,
+      "y": -103.7497,
+      "radius_km": 18928.9,
+      "active_towers": 12,
+      "atmosphere_thickness_km": 332.5,
+      "refraction_index": 1.4574
+    },
+    {
+      "id": "Planet_13",
+      "codex": 4,
+      "x": -90.6717,
+      "y": -5.4618,
+      "radius_km": 8354.9,
+      "active_towers": 16,
+      "atmosphere_thickness_km": 362.4,
+      "refraction_index": 2.3262
+    },
+    {
+      "id": "Planet_14",
+      "codex": 5,
+      "x": -192.1664,
+      "y": 244.3259,
+      "radius_km": 42045,
+      "active_towers": 14,
+      "atmosphere_thickness_km": 5,
+      "refraction_index": 1.6699
+    },
+    {
+      "id": "Planet_15",
+      "codex": 6,
+      "x": 232.7262,
+      "y": -97.2839,
+      "radius_km": 16845.3,
+      "active_towers": 27,
+      "atmosphere_thickness_km": 167.7,
+      "refraction_index": 2.8172
+    },
+    {
+      "id": "Planet_16",
+      "codex": 8,
+      "x": 158.7255,
+      "y": 107.5987,
+      "radius_km": 55722.9,
+      "active_towers": 4,
+      "atmosphere_thickness_km": 167.2,
+      "refraction_index": 2.8237
+    },
+    {
+      "id": "Planet_17",
+      "codex": 10,
+      "x": -23.0575,
+      "y": 23.309,
+      "radius_km": 6629,
+      "active_towers": 35,
+      "atmosphere_thickness_km": 283.6,
+      "refraction_index": 1.6958
+    },
+    {
+      "id": "Planet_18",
+      "codex": 12,
+      "x": -34.5038,
+      "y": 65.1533,
+      "radius_km": 49846.9,
+      "active_towers": 29,
+      "atmosphere_thickness_km": 183.2,
+      "refraction_index": 1.3117
+    },
+    {
+      "id": "Planet_19",
+      "codex": 14,
+      "x": -134.5858,
+      "y": -77.4985,
+      "radius_km": 35676.7,
+      "active_towers": 28,
+      "atmosphere_thickness_km": 497.9,
+      "refraction_index": 2.019
+    },
+    {
+      "id": "Planet_20",
+      "codex": 16,
+      "x": -230.5086,
+      "y": -149.6497,
+      "radius_km": 57301.6,
+      "active_towers": 25,
+      "atmosphere_thickness_km": 355.2,
+      "refraction_index": 2.814
+    },
+    {
+      "id": "Planet_21",
+      "codex": 18,
+      "x": 8.361,
+      "y": -49.561,
+      "radius_km": 69059.9,
+      "active_towers": 8,
+      "atmosphere_thickness_km": 96.6,
+      "refraction_index": 2.9167
+    },
+    {
+      "id": "Planet_22",
+      "codex": 20,
+      "x": -53.9307,
+      "y": -115.9784,
+      "radius_km": 6299.8,
+      "active_towers": 18,
+      "atmosphere_thickness_km": 119.7,
+      "refraction_index": 1.5568
+    },
+    {
+      "id": "Planet_23",
+      "codex": 24,
+      "x": -112.8569,
+      "y": -54.956,
+      "radius_km": 63611,
+      "active_towers": 10,
+      "atmosphere_thickness_km": 135,
+      "refraction_index": 2.7553
+    },
+    {
+      "id": "Planet_24",
+      "codex": 30,
+      "x": -122.698,
+      "y": 81.1277,
+      "radius_km": 33149.2,
+      "active_towers": 15,
+      "atmosphere_thickness_km": 59.6,
+      "refraction_index": 2.5923
+    },
+    {
+      "id": "Planet_25",
+      "codex": 36,
+      "x": -234.0113,
+      "y": 98.9171,
+      "radius_km": 21758.6,
+      "active_towers": 5,
+      "atmosphere_thickness_km": 493.1,
+      "refraction_index": 2.3609
+    },
+    {
+      "id": "Planet_26",
+      "codex": 4,
+      "x": 45.1106,
+      "y": -141.9412,
+      "radius_km": 2586.4,
+      "active_towers": 29,
+      "atmosphere_thickness_km": 132.9,
+      "refraction_index": 2.038
+    },
+    {
+      "id": "Planet_27",
+      "codex": 5,
+      "x": 82.5255,
+      "y": 142.6704,
+      "radius_km": 44179,
+      "active_towers": 23,
+      "atmosphere_thickness_km": 364.6,
+      "refraction_index": 2.6356
+    },
+    {
+      "id": "Planet_28",
+      "codex": 6,
+      "x": -49.7679,
+      "y": 150.8162,
+      "radius_km": 59450.5,
+      "active_towers": 31,
+      "atmosphere_thickness_km": 214.5,
+      "refraction_index": 1.0332
+    },
+    {
+      "id": "Planet_29",
+      "codex": 8,
+      "x": -169.4684,
+      "y": 16.99,
+      "radius_km": 49292.2,
+      "active_towers": 20,
+      "atmosphere_thickness_km": 173,
+      "refraction_index": 2.9566
+    },
+    {
+      "id": "Planet_30",
+      "codex": 10,
+      "x": 112.6184,
+      "y": 166.1051,
+      "radius_km": 9581,
+      "active_towers": 14,
+      "atmosphere_thickness_km": 339.5,
+      "refraction_index": 1.3425
+    },
+    {
+      "id": "Planet_31",
+      "codex": 12,
+      "x": 117.2004,
+      "y": -95.5748,
+      "radius_km": 65627.9,
+      "active_towers": 19,
+      "atmosphere_thickness_km": 7.9,
+      "refraction_index": 1.24
+    },
+    {
+      "id": "Planet_32",
+      "codex": 14,
+      "x": -234.6684,
+      "y": 1.5273,
+      "radius_km": 15844.6,
+      "active_towers": 10,
+      "atmosphere_thickness_km": 285.6,
+      "refraction_index": 2.785
+    },
+    {
+      "id": "Planet_33",
+      "codex": 16,
+      "x": -67.3801,
+      "y": -131.6998,
+      "radius_km": 2919.5,
+      "active_towers": 7,
+      "atmosphere_thickness_km": 113.3,
+      "refraction_index": 1.2424
+    },
+    {
+      "id": "Planet_34",
+      "codex": 18,
+      "x": 233.2655,
+      "y": 227.4049,
+      "radius_km": 963.2,
+      "active_towers": 26,
+      "atmosphere_thickness_km": 68.8,
+      "refraction_index": 2.8521
+    },
+    {
+      "id": "Planet_35",
+      "codex": 20,
+      "x": -113.8733,
+      "y": -217.8505,
+      "radius_km": 27045.5,
+      "active_towers": 33,
+      "atmosphere_thickness_km": 194.2,
+      "refraction_index": 2.5764
+    },
+    {
+      "id": "Planet_36",
+      "codex": 24,
+      "x": 167.8878,
+      "y": -28.0582,
+      "radius_km": 38476.2,
+      "active_towers": 29,
+      "atmosphere_thickness_km": 166,
+      "refraction_index": 2.6099
+    },
+    {
+      "id": "Planet_37",
+      "codex": 30,
+      "x": 2.563,
+      "y": -244.0598,
+      "radius_km": 58826,
+      "active_towers": 23,
+      "atmosphere_thickness_km": 472.3,
+      "refraction_index": 1.164
+    },
+    {
+      "id": "Planet_38",
+      "codex": 36,
+      "x": 167.754,
+      "y": 114.5241,
+      "radius_km": 16047.7,
+      "active_towers": 12,
+      "atmosphere_thickness_km": 468.4,
+      "refraction_index": 1.8552
+    },
+    {
+      "id": "Planet_39",
+      "codex": 4,
+      "x": 159.1321,
+      "y": 36.8895,
+      "radius_km": 57742.2,
+      "active_towers": 34,
+      "atmosphere_thickness_km": 477.8,
+      "refraction_index": 2.6391
+    },
+    {
+      "id": "Planet_40",
+      "codex": 5,
+      "x": -20.3341,
+      "y": 72.6579,
+      "radius_km": 69971.3,
+      "active_towers": 12,
+      "atmosphere_thickness_km": 217.1,
+      "refraction_index": 1.1268
+    },
+    {
+      "id": "Planet_41",
+      "codex": 6,
+      "x": 181.3613,
+      "y": 20.5861,
+      "radius_km": 18193.8,
+      "active_towers": 7,
+      "atmosphere_thickness_km": 431,
+      "refraction_index": 2.6134
+    },
+    {
+      "id": "Planet_42",
+      "codex": 8,
+      "x": -74.9234,
+      "y": -16.4285,
+      "radius_km": 60057.3,
+      "active_towers": 15,
+      "atmosphere_thickness_km": 44.3,
+      "refraction_index": 2.5112
+    },
+    {
+      "id": "Planet_43",
+      "codex": 10,
+      "x": 170.7061,
+      "y": 34.1291,
+      "radius_km": 16143.1,
+      "active_towers": 16,
+      "atmosphere_thickness_km": 342,
+      "refraction_index": 2.547
+    },
+    {
+      "id": "Planet_44",
+      "codex": 12,
+      "x": 194.4886,
+      "y": 148.9141,
+      "radius_km": 27797.7,
+      "active_towers": 22,
+      "atmosphere_thickness_km": 375.2,
+      "refraction_index": 1.8541
+    },
+    {
+      "id": "Planet_45",
+      "codex": 14,
+      "x": -188.9775,
+      "y": -163.6111,
+      "radius_km": 35797.1,
+      "active_towers": 28,
+      "atmosphere_thickness_km": 341.6,
+      "refraction_index": 1.2142
+    },
+    {
+      "id": "Planet_46",
+      "codex": 16,
+      "x": -43.3528,
+      "y": -163.1593,
+      "radius_km": 11196.5,
+      "active_towers": 20,
+      "atmosphere_thickness_km": 127.9,
+      "refraction_index": 2.7821
+    },
+    {
+      "id": "Planet_47",
+      "codex": 18,
+      "x": -115.986,
+      "y": 190.9425,
+      "radius_km": 18803.1,
+      "active_towers": 7,
+      "atmosphere_thickness_km": 123,
+      "refraction_index": 1.6381
+    },
+    {
+      "id": "Planet_48",
+      "codex": 20,
+      "x": -176.6925,
+      "y": 28.8777,
+      "radius_km": 34848.2,
+      "active_towers": 13,
+      "atmosphere_thickness_km": 408,
+      "refraction_index": 1.9732
+    },
+    {
+      "id": "Planet_49",
+      "codex": 24,
+      "x": 81.3341,
+      "y": -189.5817,
+      "radius_km": 32986.5,
+      "active_towers": 23,
+      "atmosphere_thickness_km": 198.2,
+      "refraction_index": 2.4524
+    },
+    {
+      "id": "Planet_50",
+      "codex": 30,
+      "x": -18.7145,
+      "y": 176.7607,
+      "radius_km": 16227.3,
+      "active_towers": 25,
+      "atmosphere_thickness_km": 208,
+      "refraction_index": 1.4013
+    },
+    {
+      "id": "Planet_51",
+      "codex": 36,
+      "x": -115.196,
+      "y": -27.1717,
+      "radius_km": 21622.1,
+      "active_towers": 29,
+      "atmosphere_thickness_km": 294.1,
+      "refraction_index": 1.9102
+    },
+    {
+      "id": "Planet_52",
+      "codex": 4,
+      "x": -209.1259,
+      "y": -67.421,
+      "radius_km": 41437.4,
+      "active_towers": 4,
+      "atmosphere_thickness_km": 421.1,
+      "refraction_index": 2.7268
+    },
+    {
+      "id": "Planet_53",
+      "codex": 5,
+      "x": -13.7722,
+      "y": -227.7679,
+      "radius_km": 39276.6,
+      "active_towers": 30,
+      "atmosphere_thickness_km": 340.3,
+      "refraction_index": 1.9663
+    },
+    {
+      "id": "Planet_54",
+      "codex": 6,
+      "x": -240.775,
+      "y": 183.1148,
+      "radius_km": 50076.5,
+      "active_towers": 12,
+      "atmosphere_thickness_km": 48.3,
+      "refraction_index": 2.4559
+    },
+    {
+      "id": "Planet_55",
+      "codex": 8,
+      "x": 137.3201,
+      "y": -191.6543,
+      "radius_km": 50820.2,
+      "active_towers": 19,
+      "atmosphere_thickness_km": 115.2,
+      "refraction_index": 2.7099
+    },
+    {
+      "id": "Planet_56",
+      "codex": 10,
+      "x": 219.5709,
+      "y": -216.665,
+      "radius_km": 20541.7,
+      "active_towers": 13,
+      "atmosphere_thickness_km": 398.4,
+      "refraction_index": 2.4929
+    },
+    {
+      "id": "Planet_57",
+      "codex": 12,
+      "x": 223.3346,
+      "y": 152.2442,
+      "radius_km": 19465.3,
+      "active_towers": 14,
+      "atmosphere_thickness_km": 401.5,
+      "refraction_index": 1.9982
+    },
+    {
+      "id": "Planet_58",
+      "codex": 14,
+      "x": -247.2538,
+      "y": 245.9233,
+      "radius_km": 35434.1,
+      "active_towers": 30,
+      "atmosphere_thickness_km": 153,
+      "refraction_index": 2.8381
+    },
+    {
+      "id": "Planet_59",
+      "codex": 16,
+      "x": -36.141,
+      "y": -249.7913,
+      "radius_km": 39548.4,
+      "active_towers": 25,
+      "atmosphere_thickness_km": 283.6,
+      "refraction_index": 1.075
+    },
+    {
+      "id": "Planet_60",
+      "codex": 18,
+      "x": 177.5859,
+      "y": 30.9647,
+      "radius_km": 58162.8,
+      "active_towers": 10,
+      "atmosphere_thickness_km": 267,
+      "refraction_index": 1.2603
+    },
+    {
+      "id": "Planet_61",
+      "codex": 20,
+      "x": -185.6669,
+      "y": 232.9986,
+      "radius_km": 37477.7,
+      "active_towers": 16,
+      "atmosphere_thickness_km": 412.2,
+      "refraction_index": 2.7088
+    },
+    {
+      "id": "Planet_62",
+      "codex": 24,
+      "x": -123.7749,
+      "y": 54.6434,
+      "radius_km": 7065.6,
+      "active_towers": 8,
+      "atmosphere_thickness_km": 315.8,
+      "refraction_index": 2.6005
+    },
+    {
+      "id": "Planet_63",
+      "codex": 30,
+      "x": -6.323,
+      "y": 223.8303,
+      "radius_km": 35462.3,
+      "active_towers": 30,
+      "atmosphere_thickness_km": 135.9,
+      "refraction_index": 2.1657
+    },
+    {
+      "id": "Planet_64",
+      "codex": 36,
+      "x": -7.2489,
+      "y": -8.7349,
+      "radius_km": 4077.9,
+      "active_towers": 20,
+      "atmosphere_thickness_km": 14.2,
+      "refraction_index": 2.8626
+    },
+    {
+      "id": "Planet_65",
+      "codex": 4,
+      "x": -67.2127,
+      "y": -100.1359,
+      "radius_km": 57486.9,
+      "active_towers": 9,
+      "atmosphere_thickness_km": 319.5,
+      "refraction_index": 1.1109
+    },
+    {
+      "id": "Planet_66",
+      "codex": 5,
+      "x": 100.7784,
+      "y": -77.9062,
+      "radius_km": 29150.3,
+      "active_towers": 12,
+      "atmosphere_thickness_km": 287.3,
+      "refraction_index": 2.0116
+    },
+    {
+      "id": "Planet_67",
+      "codex": 6,
+      "x": -229.6964,
+      "y": 133.781,
+      "radius_km": 69342.2,
+      "active_towers": 28,
+      "atmosphere_thickness_km": 431.4,
+      "refraction_index": 2.1661
+    },
+    {
+      "id": "Planet_68",
+      "codex": 8,
+      "x": -193.6002,
+      "y": 142.1695,
+      "radius_km": 988.7,
+      "active_towers": 36,
+      "atmosphere_thickness_km": 194.6,
+      "refraction_index": 2.6315
+    },
+    {
+      "id": "Planet_69",
+      "codex": 10,
+      "x": 208.069,
+      "y": -119.509,
+      "radius_km": 48377.9,
+      "active_towers": 10,
+      "atmosphere_thickness_km": 193.2,
+      "refraction_index": 2.7907
+    },
+    {
+      "id": "Planet_70",
+      "codex": 12,
+      "x": -158.8721,
+      "y": -61.1745,
+      "radius_km": 35355.1,
+      "active_towers": 13,
+      "atmosphere_thickness_km": 49,
+      "refraction_index": 2.4266
+    },
+    {
+      "id": "Planet_71",
+      "codex": 14,
+      "x": -10.1038,
+      "y": 50.6162,
+      "radius_km": 28123.8,
+      "active_towers": 22,
+      "atmosphere_thickness_km": 156.8,
+      "refraction_index": 2.7971
+    },
+    {
+      "id": "Planet_72",
+      "codex": 16,
+      "x": 39.0449,
+      "y": -185.8736,
+      "radius_km": 61544.1,
+      "active_towers": 32,
+      "atmosphere_thickness_km": 224.3,
+      "refraction_index": 2.7244
+    },
+    {
+      "id": "Planet_73",
+      "codex": 18,
+      "x": -32.743,
+      "y": 19.0811,
+      "radius_km": 28246.5,
+      "active_towers": 33,
+      "atmosphere_thickness_km": 187.7,
+      "refraction_index": 1.9501
+    },
+    {
+      "id": "Planet_74",
+      "codex": 20,
+      "x": -150.8964,
+      "y": 16.9167,
+      "radius_km": 29267.4,
+      "active_towers": 5,
+      "atmosphere_thickness_km": 351.5,
+      "refraction_index": 2.4879
+    },
+    {
+      "id": "Planet_75",
+      "codex": 24,
+      "x": -220.819,
+      "y": 142.3495,
+      "radius_km": 35124.8,
+      "active_towers": 36,
+      "atmosphere_thickness_km": 99.1,
+      "refraction_index": 1.0409
+    },
+    {
+      "id": "Planet_76",
+      "codex": 30,
+      "x": -186.381,
+      "y": -175.8924,
+      "radius_km": 66481.3,
+      "active_towers": 25,
+      "atmosphere_thickness_km": 208,
+      "refraction_index": 2.184
+    },
+    {
+      "id": "Planet_77",
+      "codex": 36,
+      "x": -118.7497,
+      "y": 175.6651,
+      "radius_km": 14464.8,
+      "active_towers": 11,
+      "atmosphere_thickness_km": 65.1,
+      "refraction_index": 1.2064
+    },
+    {
+      "id": "Planet_78",
+      "codex": 4,
+      "x": 151.2094,
+      "y": -202.6203,
+      "radius_km": 57182.4,
+      "active_towers": 7,
+      "atmosphere_thickness_km": 80,
+      "refraction_index": 1.5734
+    },
+    {
+      "id": "Planet_79",
+      "codex": 5,
+      "x": 13.7292,
+      "y": 103.7065,
+      "radius_km": 58904.3,
+      "active_towers": 33,
+      "atmosphere_thickness_km": 69.5,
+      "refraction_index": 1.3095
+    },
+    {
+      "id": "Planet_80",
+      "codex": 6,
+      "x": 160.2923,
+      "y": -101.7901,
+      "radius_km": 49353,
+      "active_towers": 21,
+      "atmosphere_thickness_km": 301.4,
+      "refraction_index": 2.3358
+    },
+    {
+      "id": "Planet_81",
+      "codex": 8,
+      "x": 86.1014,
+      "y": -234.9533,
+      "radius_km": 30118.9,
+      "active_towers": 22,
+      "atmosphere_thickness_km": 338.4,
+      "refraction_index": 1.9965
+    },
+    {
+      "id": "Planet_82",
+      "codex": 10,
+      "x": 213.1138,
+      "y": -187.7701,
+      "radius_km": 37882.2,
+      "active_towers": 18,
+      "atmosphere_thickness_km": 230.9,
+      "refraction_index": 2.6317
+    },
+    {
+      "id": "Planet_83",
+      "codex": 12,
+      "x": -80.0533,
+      "y": 69.641,
+      "radius_km": 30780.1,
+      "active_towers": 32,
+      "atmosphere_thickness_km": 29.4,
+      "refraction_index": 1.8532
+    },
+    {
+      "id": "Planet_84",
+      "codex": 14,
+      "x": 63.7465,
+      "y": 233.7493,
+      "radius_km": 35863.3,
+      "active_towers": 26,
+      "atmosphere_thickness_km": 124.9,
+      "refraction_index": 1.9999
+    },
+    {
+      "id": "Planet_85",
+      "codex": 16,
+      "x": 192.0888,
+      "y": -172.8237,
+      "radius_km": 67553.4,
+      "active_towers": 12,
+      "atmosphere_thickness_km": 363.6,
+      "refraction_index": 1.582
+    },
+    {
+      "id": "Planet_86",
+      "codex": 18,
+      "x": -125.9005,
+      "y": 209.8114,
+      "radius_km": 56504.8,
+      "active_towers": 14,
+      "atmosphere_thickness_km": 190.2,
+      "refraction_index": 1.6934
+    },
+    {
+      "id": "Planet_87",
+      "codex": 20,
+      "x": -215.2178,
+      "y": -30.7231,
+      "radius_km": 30313.3,
+      "active_towers": 10,
+      "atmosphere_thickness_km": 470.8,
+      "refraction_index": 1.3297
+    },
+    {
+      "id": "Planet_88",
+      "codex": 24,
+      "x": 133.8821,
+      "y": -87.2842,
+      "radius_km": 43287.2,
+      "active_towers": 10,
+      "atmosphere_thickness_km": 141.7,
+      "refraction_index": 2.4366
+    },
+    {
+      "id": "Planet_89",
+      "codex": 30,
+      "x": -10.3294,
+      "y": 215.6852,
+      "radius_km": 30001.8,
+      "active_towers": 15,
+      "atmosphere_thickness_km": 127.4,
+      "refraction_index": 1.8016
+    },
+    {
+      "id": "Planet_90",
+      "codex": 36,
+      "x": -203.9396,
+      "y": 202.4581,
+      "radius_km": 43003,
+      "active_towers": 36,
+      "atmosphere_thickness_km": 285.1,
+      "refraction_index": 2.3733
+    },
+    {
+      "id": "Planet_91",
+      "codex": 4,
+      "x": 197.0811,
+      "y": -94.241,
+      "radius_km": 3760.7,
+      "active_towers": 18,
+      "atmosphere_thickness_km": 463.4,
+      "refraction_index": 1.8229
+    },
+    {
+      "id": "Planet_92",
+      "codex": 5,
+      "x": 45.5019,
+      "y": -0.9381,
+      "radius_km": 30859.2,
+      "active_towers": 4,
+      "atmosphere_thickness_km": 279.8,
+      "refraction_index": 1.6597
+    },
+    {
+      "id": "Planet_93",
+      "codex": 6,
+      "x": -95.1731,
+      "y": 59.7693,
+      "radius_km": 33789.3,
+      "active_towers": 35,
+      "atmosphere_thickness_km": 238.6,
+      "refraction_index": 2.8308
+    },
+    {
+      "id": "Planet_94",
+      "codex": 8,
+      "x": 96.8951,
+      "y": -186.3514,
+      "radius_km": 5302.9,
+      "active_towers": 8,
+      "atmosphere_thickness_km": 440.6,
+      "refraction_index": 2.3143
+    },
+    {
+      "id": "Planet_95",
+      "codex": 10,
+      "x": -124.2065,
+      "y": 247.7123,
+      "radius_km": 46656.8,
+      "active_towers": 21,
+      "atmosphere_thickness_km": 132.7,
+      "refraction_index": 1.1914
+    },
+    {
+      "id": "Planet_96",
+      "codex": 12,
+      "x": -3.509,
+      "y": 69.3817,
+      "radius_km": 40348.5,
+      "active_towers": 23,
+      "atmosphere_thickness_km": 104.3,
+      "refraction_index": 2.9973
+    },
+    {
+      "id": "Planet_97",
+      "codex": 14,
+      "x": 124.3003,
+      "y": -57.8969,
+      "radius_km": 4940,
+      "active_towers": 5,
+      "atmosphere_thickness_km": 463.3,
+      "refraction_index": 1.4489
+    },
+    {
+      "id": "Planet_98",
+      "codex": 16,
+      "x": 158.0477,
+      "y": 211.5576,
+      "radius_km": 53372.4,
+      "active_towers": 27,
+      "atmosphere_thickness_km": 37,
+      "refraction_index": 1.6379
+    },
+    {
+      "id": "Planet_99",
+      "codex": 18,
+      "x": 50.1764,
+      "y": -246.3469,
+      "radius_km": 56891.2,
+      "active_towers": 33,
+      "atmosphere_thickness_km": 221.4,
+      "refraction_index": 1.7525
+    },
+    {
+      "id": "Planet_100",
+      "codex": 20,
+      "x": 147.9466,
+      "y": -231.6112,
+      "radius_km": 61807.2,
+      "active_towers": 18,
+      "atmosphere_thickness_km": 69.6,
+      "refraction_index": 2.8101
+    },
+    {
+      "id": "Planet_101",
+      "codex": 24,
+      "x": 7.9153,
+      "y": -41.1289,
+      "radius_km": 33219,
+      "active_towers": 7,
+      "atmosphere_thickness_km": 176.5,
+      "refraction_index": 2.3907
+    },
+    {
+      "id": "Planet_102",
+      "codex": 30,
+      "x": 67.9135,
+      "y": 145.7817,
+      "radius_km": 66355.3,
+      "active_towers": 24,
+      "atmosphere_thickness_km": 407.4,
+      "refraction_index": 1.9835
+    },
+    {
+      "id": "Planet_103",
+      "codex": 36,
+      "x": 107.0513,
+      "y": -41.6314,
+      "radius_km": 66772.2,
+      "active_towers": 6,
+      "atmosphere_thickness_km": 9.4,
+      "refraction_index": 1.6202
+    },
+    {
+      "id": "Planet_104",
+      "codex": 4,
+      "x": 113.0616,
+      "y": 56.6604,
+      "radius_km": 32740.1,
+      "active_towers": 21,
+      "atmosphere_thickness_km": 269.3,
+      "refraction_index": 1.3205
+    },
+    {
+      "id": "Planet_105",
+      "codex": 5,
+      "x": 17.626,
+      "y": 138.9041,
+      "radius_km": 63624.9,
+      "active_towers": 36,
+      "atmosphere_thickness_km": 207.4,
+      "refraction_index": 1.815
+    },
+    {
+      "id": "Planet_106",
+      "codex": 6,
+      "x": 207.6367,
+      "y": 230.2614,
+      "radius_km": 51189.2,
+      "active_towers": 14,
+      "atmosphere_thickness_km": 431.6,
+      "refraction_index": 2.9686
+    },
+    {
+      "id": "Planet_107",
+      "codex": 8,
+      "x": -93.453,
+      "y": -150.6142,
+      "radius_km": 23006.8,
+      "active_towers": 30,
+      "atmosphere_thickness_km": 100.3,
+      "refraction_index": 1.0699
+    },
+    {
+      "id": "Planet_108",
+      "codex": 10,
+      "x": -37.1664,
+      "y": 26.6888,
+      "radius_km": 58663.2,
+      "active_towers": 9,
+      "atmosphere_thickness_km": 155.4,
+      "refraction_index": 1.2701
+    },
+    {
+      "id": "Planet_109",
+      "codex": 12,
+      "x": 200.4036,
+      "y": -36.4913,
+      "radius_km": 57501.2,
+      "active_towers": 17,
+      "atmosphere_thickness_km": 371.2,
+      "refraction_index": 1.0326
+    },
+    {
+      "id": "Planet_110",
+      "codex": 14,
+      "x": -90.0177,
+      "y": -157.4125,
+      "radius_km": 1744.9,
+      "active_towers": 9,
+      "atmosphere_thickness_km": 245.8,
+      "refraction_index": 1.5286
+    },
+    {
+      "id": "Planet_111",
+      "codex": 16,
+      "x": -54.6615,
+      "y": -194.8395,
+      "radius_km": 27456.8,
+      "active_towers": 7,
+      "atmosphere_thickness_km": 194.2,
+      "refraction_index": 1.1994
+    },
+    {
+      "id": "Planet_112",
+      "codex": 18,
+      "x": -41.6619,
+      "y": 151.0927,
+      "radius_km": 18450.1,
+      "active_towers": 9,
+      "atmosphere_thickness_km": 184.5,
+      "refraction_index": 1.1362
+    },
+    {
+      "id": "Planet_113",
+      "codex": 20,
+      "x": -144.0586,
+      "y": -52.5596,
+      "radius_km": 18987.1,
+      "active_towers": 22,
+      "atmosphere_thickness_km": 48,
+      "refraction_index": 1.6945
+    },
+    {
+      "id": "Planet_114",
+      "codex": 24,
+      "x": 39.686,
+      "y": -39.6861,
+      "radius_km": 10274.9,
+      "active_towers": 10,
+      "atmosphere_thickness_km": 165.1,
+      "refraction_index": 2.4166
+    },
+    {
+      "id": "Planet_115",
+      "codex": 30,
+      "x": 81.813,
+      "y": 72.7974,
+      "radius_km": 3030.5,
+      "active_towers": 5,
+      "atmosphere_thickness_km": 210.7,
+      "refraction_index": 2.7051
+    },
+    {
+      "id": "Planet_116",
+      "codex": 36,
+      "x": -109.1766,
+      "y": -122.6566,
+      "radius_km": 51044.3,
+      "active_towers": 11,
+      "atmosphere_thickness_km": 80.5,
+      "refraction_index": 1.9175
+    },
+    {
+      "id": "Planet_117",
+      "codex": 4,
+      "x": -224.3382,
+      "y": 80.5319,
+      "radius_km": 56083.6,
+      "active_towers": 31,
+      "atmosphere_thickness_km": 393.2,
+      "refraction_index": 2.5388
+    },
+    {
+      "id": "Planet_118",
+      "codex": 5,
+      "x": -142.4653,
+      "y": 90.0191,
+      "radius_km": 21937.1,
+      "active_towers": 25,
+      "atmosphere_thickness_km": 240.2,
+      "refraction_index": 2.8908
+    },
+    {
+      "id": "Planet_119",
+      "codex": 6,
+      "x": 12.1053,
+      "y": -166.3014,
+      "radius_km": 65006.5,
+      "active_towers": 35,
+      "atmosphere_thickness_km": 371.6,
+      "refraction_index": 1.9647
+    },
+    {
+      "id": "Planet_120",
+      "codex": 8,
+      "x": 56.21,
+      "y": -92.4354,
+      "radius_km": 35751.1,
+      "active_towers": 31,
+      "atmosphere_thickness_km": 254,
+      "refraction_index": 2.6751
+    },
+    {
+      "id": "Planet_121",
+      "codex": 10,
+      "x": 107.4293,
+      "y": 209.0273,
+      "radius_km": 33114.3,
+      "active_towers": 18,
+      "atmosphere_thickness_km": 273.6,
+      "refraction_index": 2.5986
+    },
+    {
+      "id": "Planet_122",
+      "codex": 12,
+      "x": -73.1788,
+      "y": 227.98,
+      "radius_km": 733.2,
+      "active_towers": 23,
+      "atmosphere_thickness_km": 425.4,
+      "refraction_index": 2.0005
+    },
+    {
+      "id": "Planet_123",
+      "codex": 14,
+      "x": -69.7954,
+      "y": -152.0211,
+      "radius_km": 43987.6,
+      "active_towers": 32,
+      "atmosphere_thickness_km": 187.1,
+      "refraction_index": 2.4152
+    },
+    {
+      "id": "Planet_124",
+      "codex": 16,
+      "x": 86.3209,
+      "y": 145.9213,
+      "radius_km": 16193.4,
+      "active_towers": 33,
+      "atmosphere_thickness_km": 135.2,
+      "refraction_index": 1.4724
+    },
+    {
+      "id": "Planet_125",
+      "codex": 18,
+      "x": 14.308,
+      "y": -135.2498,
+      "radius_km": 6457.3,
+      "active_towers": 16,
+      "atmosphere_thickness_km": 25.7,
+      "refraction_index": 1.2068
+    },
+    {
+      "id": "Planet_126",
+      "codex": 20,
+      "x": -207.9578,
+      "y": -220.9169,
+      "radius_km": 17351.2,
+      "active_towers": 33,
+      "atmosphere_thickness_km": 335.9,
+      "refraction_index": 1.0995
+    },
+    {
+      "id": "Planet_127",
+      "codex": 24,
+      "x": -182.1047,
+      "y": -213.1481,
+      "radius_km": 59008.3,
+      "active_towers": 5,
+      "atmosphere_thickness_km": 314,
+      "refraction_index": 1.3299
+    },
+    {
+      "id": "Planet_128",
+      "codex": 30,
+      "x": 68.3337,
+      "y": 232.7052,
+      "radius_km": 25833.6,
+      "active_towers": 15,
+      "atmosphere_thickness_km": 465.8,
+      "refraction_index": 2.7604
+    },
+    {
+      "id": "Planet_129",
+      "codex": 36,
+      "x": 50.4377,
+      "y": -54.8534,
+      "radius_km": 37514.7,
+      "active_towers": 24,
+      "atmosphere_thickness_km": 70.5,
+      "refraction_index": 1.4146
+    },
+    {
+      "id": "Planet_130",
+      "codex": 4,
+      "x": -157.9646,
+      "y": 238.0671,
+      "radius_km": 17739.5,
+      "active_towers": 12,
+      "atmosphere_thickness_km": 475.7,
+      "refraction_index": 2.0757
+    },
+    {
+      "id": "Planet_131",
+      "codex": 5,
+      "x": -88.2079,
+      "y": 23.1394,
+      "radius_km": 47689,
+      "active_towers": 11,
+      "atmosphere_thickness_km": 226.9,
+      "refraction_index": 1.6747
+    },
+    {
+      "id": "Planet_132",
+      "codex": 6,
+      "x": -62.4047,
+      "y": -242.605,
+      "radius_km": 35707.6,
+      "active_towers": 5,
+      "atmosphere_thickness_km": 335.2,
+      "refraction_index": 1.7301
+    },
+    {
+      "id": "Planet_133",
+      "codex": 8,
+      "x": -44.7337,
+      "y": 220.761,
+      "radius_km": 53443.9,
+      "active_towers": 24,
+      "atmosphere_thickness_km": 407.7,
+      "refraction_index": 1.618
+    },
+    {
+      "id": "Planet_134",
+      "codex": 10,
+      "x": -217.577,
+      "y": -159.6444,
+      "radius_km": 12345.4,
+      "active_towers": 28,
+      "atmosphere_thickness_km": 20.8,
+      "refraction_index": 2.9398
+    },
+    {
+      "id": "Planet_135",
+      "codex": 12,
+      "x": -1.5084,
+      "y": 80.7626,
+      "radius_km": 22117,
+      "active_towers": 18,
+      "atmosphere_thickness_km": 209.9,
+      "refraction_index": 2.8344
+    },
+    {
+      "id": "Planet_136",
+      "codex": 14,
+      "x": 73.2837,
+      "y": -202.589,
+      "radius_km": 61686.3,
+      "active_towers": 31,
+      "atmosphere_thickness_km": 137.8,
+      "refraction_index": 2.3398
+    },
+    {
+      "id": "Planet_137",
+      "codex": 16,
+      "x": 30.7913,
+      "y": -249.4844,
+      "radius_km": 62242,
+      "active_towers": 27,
+      "atmosphere_thickness_km": 438.3,
+      "refraction_index": 1.4409
+    },
+    {
+      "id": "Planet_138",
+      "codex": 18,
+      "x": 72.321,
+      "y": 121.026,
+      "radius_km": 58985.2,
+      "active_towers": 18,
+      "atmosphere_thickness_km": 39.1,
+      "refraction_index": 1.6909
+    },
+    {
+      "id": "Planet_139",
+      "codex": 20,
+      "x": -45.1387,
+      "y": 50.9927,
+      "radius_km": 45552.2,
+      "active_towers": 27,
+      "atmosphere_thickness_km": 150.6,
+      "refraction_index": 2.2042
+    },
+    {
+      "id": "Planet_140",
+      "codex": 24,
+      "x": -191.4652,
+      "y": 38.7293,
+      "radius_km": 44201.1,
+      "active_towers": 17,
+      "atmosphere_thickness_km": 319.6,
+      "refraction_index": 2.8899
+    },
+    {
+      "id": "Planet_141",
+      "codex": 30,
+      "x": -209.1622,
+      "y": -80.0713,
+      "radius_km": 10002.9,
+      "active_towers": 14,
+      "atmosphere_thickness_km": 461.7,
+      "refraction_index": 2.0525
+    },
+    {
+      "id": "Planet_142",
+      "codex": 36,
+      "x": 36.5727,
+      "y": 73.3018,
+      "radius_km": 18082.5,
+      "active_towers": 17,
+      "atmosphere_thickness_km": 265.7,
+      "refraction_index": 2.6864
+    },
+    {
+      "id": "Planet_143",
+      "codex": 4,
+      "x": -64.1774,
+      "y": -17.5646,
+      "radius_km": 41978.5,
+      "active_towers": 28,
+      "atmosphere_thickness_km": 281.6,
+      "refraction_index": 1.8274
+    },
+    {
+      "id": "Planet_144",
+      "codex": 5,
+      "x": 134.8327,
+      "y": 177.7768,
+      "radius_km": 33385.4,
+      "active_towers": 7,
+      "atmosphere_thickness_km": 38.3,
+      "refraction_index": 2.0619
+    },
+    {
+      "id": "Planet_145",
+      "codex": 6,
+      "x": -15.2644,
+      "y": -222.6402,
+      "radius_km": 53837,
+      "active_towers": 35,
+      "atmosphere_thickness_km": 93.6,
+      "refraction_index": 2.6986
+    },
+    {
+      "id": "Planet_146",
+      "codex": 8,
+      "x": -49.6308,
+      "y": 86.7254,
+      "radius_km": 3860.6,
+      "active_towers": 6,
+      "atmosphere_thickness_km": 195.2,
+      "refraction_index": 2.9128
+    },
+    {
+      "id": "Planet_147",
+      "codex": 10,
+      "x": 159.0762,
+      "y": 152.5499,
+      "radius_km": 48645.8,
+      "active_towers": 26,
+      "atmosphere_thickness_km": 187.8,
+      "refraction_index": 1.8214
+    },
+    {
+      "id": "Planet_148",
+      "codex": 12,
+      "x": -137.5483,
+      "y": 205.2676,
+      "radius_km": 57096.2,
+      "active_towers": 13,
+      "atmosphere_thickness_km": 496.2,
+      "refraction_index": 1.05
+    },
+    {
+      "id": "Planet_149",
+      "codex": 14,
+      "x": -27.6981,
+      "y": -31.4875,
+      "radius_km": 37171.7,
+      "active_towers": 19,
+      "atmosphere_thickness_km": 472,
+      "refraction_index": 2.928
+    },
+    {
+      "id": "Planet_150",
+      "codex": 16,
+      "x": -45.1222,
+      "y": 63.4904,
+      "radius_km": 4983.8,
+      "active_towers": 31,
+      "atmosphere_thickness_km": 158.9,
+      "refraction_index": 1.2325
+    },
+    {
+      "id": "Planet_151",
+      "codex": 18,
+      "x": 33.6406,
+      "y": 7.4375,
+      "radius_km": 54246.1,
+      "active_towers": 16,
+      "atmosphere_thickness_km": 14.1,
+      "refraction_index": 2.3464
+    },
+    {
+      "id": "Planet_152",
+      "codex": 20,
+      "x": 145.8304,
+      "y": 69.4424,
+      "radius_km": 25831.2,
+      "active_towers": 24,
+      "atmosphere_thickness_km": 446,
+      "refraction_index": 2.3915
+    },
+    {
+      "id": "Planet_153",
+      "codex": 24,
+      "x": 11.981,
+      "y": 96.7391,
+      "radius_km": 6850.3,
+      "active_towers": 14,
+      "atmosphere_thickness_km": 154.2,
+      "refraction_index": 1.5651
+    },
+    {
+      "id": "Planet_154",
+      "codex": 30,
+      "x": 203.6867,
+      "y": 14.8599,
+      "radius_km": 23486.7,
+      "active_towers": 28,
+      "atmosphere_thickness_km": 183.7,
+      "refraction_index": 2.3807
+    },
+    {
+      "id": "Planet_155",
+      "codex": 36,
+      "x": 62.3044,
+      "y": -192.279,
+      "radius_km": 29657.8,
+      "active_towers": 12,
+      "atmosphere_thickness_km": 145.1,
+      "refraction_index": 2.0668
+    },
+    {
+      "id": "Planet_156",
+      "codex": 4,
+      "x": 147.1204,
+      "y": 220.4381,
+      "radius_km": 66490.6,
+      "active_towers": 4,
+      "atmosphere_thickness_km": 473,
+      "refraction_index": 1.081
+    },
+    {
+      "id": "Planet_157",
+      "codex": 5,
+      "x": -15.6414,
+      "y": -132.3151,
+      "radius_km": 2656.9,
+      "active_towers": 31,
+      "atmosphere_thickness_km": 264.1,
+      "refraction_index": 2.1841
+    },
+    {
+      "id": "Planet_158",
+      "codex": 6,
+      "x": 93.3568,
+      "y": -192.8771,
+      "radius_km": 1142.5,
+      "active_towers": 33,
+      "atmosphere_thickness_km": 395.5,
+      "refraction_index": 1.64
+    },
+    {
+      "id": "Planet_159",
+      "codex": 8,
+      "x": -74.4164,
+      "y": 27.4596,
+      "radius_km": 2246.8,
+      "active_towers": 27,
+      "atmosphere_thickness_km": 42.2,
+      "refraction_index": 1.8751
+    },
+    {
+      "id": "Planet_160",
+      "codex": 10,
+      "x": -179.8575,
+      "y": 20.0125,
+      "radius_km": 31848.2,
+      "active_towers": 17,
+      "atmosphere_thickness_km": 200.9,
+      "refraction_index": 1.7936
+    },
+    {
+      "id": "Planet_161",
+      "codex": 12,
+      "x": 171.6309,
+      "y": -11.0394,
+      "radius_km": 26980.4,
+      "active_towers": 7,
+      "atmosphere_thickness_km": 70,
+      "refraction_index": 2.5758
+    },
+    {
+      "id": "Planet_162",
+      "codex": 14,
+      "x": -226.0451,
+      "y": 209.3896,
+      "radius_km": 27458,
+      "active_towers": 29,
+      "atmosphere_thickness_km": 201.5,
+      "refraction_index": 2.7324
+    },
+    {
+      "id": "Planet_163",
+      "codex": 16,
+      "x": 143.6487,
+      "y": -216.666,
+      "radius_km": 15428.1,
+      "active_towers": 28,
+      "atmosphere_thickness_km": 450,
+      "refraction_index": 1.4574
+    },
+    {
+      "id": "Planet_164",
+      "codex": 18,
+      "x": 166.1832,
+      "y": 119.3895,
+      "radius_km": 50647.3,
+      "active_towers": 17,
+      "atmosphere_thickness_km": 339.8,
+      "refraction_index": 2.4431
+    },
+    {
+      "id": "Planet_165",
+      "codex": 20,
+      "x": -83.3398,
+      "y": -235.8953,
+      "radius_km": 42671.1,
+      "active_towers": 28,
+      "atmosphere_thickness_km": 120.2,
+      "refraction_index": 2.6577
+    },
+    {
+      "id": "Planet_166",
+      "codex": 24,
+      "x": -172.9487,
+      "y": 88.2358,
+      "radius_km": 38187.9,
+      "active_towers": 36,
+      "atmosphere_thickness_km": 20.9,
+      "refraction_index": 1.2036
+    },
+    {
+      "id": "Planet_167",
+      "codex": 30,
+      "x": -98.1993,
+      "y": -119.5454,
+      "radius_km": 33808,
+      "active_towers": 31,
+      "atmosphere_thickness_km": 75.2,
+      "refraction_index": 1.5634
+    },
+    {
+      "id": "Planet_168",
+      "codex": 36,
+      "x": 217.3732,
+      "y": 201.265,
+      "radius_km": 45452.7,
+      "active_towers": 6,
+      "atmosphere_thickness_km": 271.5,
+      "refraction_index": 1.0463
+    },
+    {
+      "id": "Planet_169",
+      "codex": 4,
+      "x": 51.0703,
+      "y": 137.6439,
+      "radius_km": 64128.6,
+      "active_towers": 14,
+      "atmosphere_thickness_km": 83.2,
+      "refraction_index": 1.2917
+    },
+    {
+      "id": "Planet_170",
+      "codex": 5,
+      "x": -76.2046,
+      "y": -228.0989,
+      "radius_km": 40760.6,
+      "active_towers": 7,
+      "atmosphere_thickness_km": 202.1,
+      "refraction_index": 1.244
+    },
+    {
+      "id": "Planet_171",
+      "codex": 6,
+      "x": 198.8056,
+      "y": 28.5029,
+      "radius_km": 59523.4,
+      "active_towers": 23,
+      "atmosphere_thickness_km": 70.2,
+      "refraction_index": 2.5534
+    },
+    {
+      "id": "Planet_172",
+      "codex": 8,
+      "x": -185.606,
+      "y": 210.5065,
+      "radius_km": 13605.5,
+      "active_towers": 33,
+      "atmosphere_thickness_km": 298.1,
+      "refraction_index": 1.3525
+    },
+    {
+      "id": "Planet_173",
+      "codex": 10,
+      "x": -229.0759,
+      "y": 83.3923,
+      "radius_km": 27925.2,
+      "active_towers": 11,
+      "atmosphere_thickness_km": 321.9,
+      "refraction_index": 2.541
+    },
+    {
+      "id": "Planet_174",
+      "codex": 12,
+      "x": -38.7744,
+      "y": 92.3473,
+      "radius_km": 47890.2,
+      "active_towers": 32,
+      "atmosphere_thickness_km": 78.3,
+      "refraction_index": 1.4163
+    },
+    {
+      "id": "Planet_175",
+      "codex": 14,
+      "x": -115.0425,
+      "y": -59.7317,
+      "radius_km": 36226.5,
+      "active_towers": 23,
+      "atmosphere_thickness_km": 258,
+      "refraction_index": 2.5812
+    },
+    {
+      "id": "Planet_176",
+      "codex": 16,
+      "x": 188.6173,
+      "y": 27.8833,
+      "radius_km": 52613.2,
+      "active_towers": 20,
+      "atmosphere_thickness_km": 315.8,
+      "refraction_index": 1.7383
+    },
+    {
+      "id": "Planet_177",
+      "codex": 18,
+      "x": -18.2051,
+      "y": 210.5024,
+      "radius_km": 50335.7,
+      "active_towers": 17,
+      "atmosphere_thickness_km": 16.5,
+      "refraction_index": 2.2927
+    },
+    {
+      "id": "Planet_178",
+      "codex": 20,
+      "x": -228.517,
+      "y": -217.8029,
+      "radius_km": 60273.3,
+      "active_towers": 20,
+      "atmosphere_thickness_km": 473.4,
+      "refraction_index": 1.6823
+    },
+    {
+      "id": "Planet_179",
+      "codex": 24,
+      "x": -100.0428,
+      "y": 34.5283,
+      "radius_km": 58805.4,
+      "active_towers": 32,
+      "atmosphere_thickness_km": 161.7,
+      "refraction_index": 2.2814
+    },
+    {
+      "id": "Planet_180",
+      "codex": 30,
+      "x": -80.6551,
+      "y": 14.1755,
+      "radius_km": 45111.9,
+      "active_towers": 24,
+      "atmosphere_thickness_km": 41.7,
+      "refraction_index": 2.0337
+    },
+    {
+      "id": "Planet_181",
+      "codex": 36,
+      "x": -221.9505,
+      "y": 43.1532,
+      "radius_km": 55791,
+      "active_towers": 21,
+      "atmosphere_thickness_km": 408.5,
+      "refraction_index": 1.1745
+    },
+    {
+      "id": "Planet_182",
+      "codex": 4,
+      "x": 240.1471,
+      "y": 39.578,
+      "radius_km": 24777.4,
+      "active_towers": 17,
+      "atmosphere_thickness_km": 179.3,
+      "refraction_index": 1.9221
+    },
+    {
+      "id": "Planet_183",
+      "codex": 5,
+      "x": 101.365,
+      "y": -83.1039,
+      "radius_km": 39791.3,
+      "active_towers": 33,
+      "atmosphere_thickness_km": 290.2,
+      "refraction_index": 2.3065
+    },
+    {
+      "id": "Planet_184",
+      "codex": 6,
+      "x": 244.8395,
+      "y": -114.0322,
+      "radius_km": 25616.8,
+      "active_towers": 25,
+      "atmosphere_thickness_km": 224.4,
+      "refraction_index": 2.0982
+    },
+    {
+      "id": "Planet_185",
+      "codex": 8,
+      "x": -63.1462,
+      "y": -228.7359,
+      "radius_km": 37116.1,
+      "active_towers": 23,
+      "atmosphere_thickness_km": 272.9,
+      "refraction_index": 2.1979
+    },
+    {
+      "id": "Planet_186",
+      "codex": 10,
+      "x": 233.6054,
+      "y": 17.4626,
+      "radius_km": 28921.4,
+      "active_towers": 13,
+      "atmosphere_thickness_km": 55,
+      "refraction_index": 2.96
+    },
+    {
+      "id": "Planet_187",
+      "codex": 12,
+      "x": 111.638,
+      "y": 131.5854,
+      "radius_km": 28181.8,
+      "active_towers": 25,
+      "atmosphere_thickness_km": 189.2,
+      "refraction_index": 1.8379
+    },
+    {
+      "id": "Planet_188",
+      "codex": 14,
+      "x": -62.007,
+      "y": -100.5116,
+      "radius_km": 48252.4,
+      "active_towers": 33,
+      "atmosphere_thickness_km": 496.3,
+      "refraction_index": 1.2912
+    },
+    {
+      "id": "Planet_189",
+      "codex": 16,
+      "x": 123.9561,
+      "y": 185.6914,
+      "radius_km": 39589.5,
+      "active_towers": 14,
+      "atmosphere_thickness_km": 303,
+      "refraction_index": 1.5509
+    },
+    {
+      "id": "Planet_190",
+      "codex": 18,
+      "x": 207.1519,
+      "y": -92.1324,
+      "radius_km": 51504.6,
+      "active_towers": 21,
+      "atmosphere_thickness_km": 421.3,
+      "refraction_index": 2.4871
+    },
+    {
+      "id": "Planet_191",
+      "codex": 20,
+      "x": -36.2619,
+      "y": -168.1202,
+      "radius_km": 62506.7,
+      "active_towers": 16,
+      "atmosphere_thickness_km": 91,
+      "refraction_index": 2.7713
+    },
+    {
+      "id": "Planet_192",
+      "codex": 24,
+      "x": -18.9951,
+      "y": -47.8378,
+      "radius_km": 21428,
+      "active_towers": 5,
+      "atmosphere_thickness_km": 315,
+      "refraction_index": 2.5578
+    },
+    {
+      "id": "Planet_193",
+      "codex": 30,
+      "x": 20.5985,
+      "y": 95.4733,
+      "radius_km": 41541,
+      "active_towers": 24,
+      "atmosphere_thickness_km": 484.5,
+      "refraction_index": 1.244
+    },
+    {
+      "id": "Planet_194",
+      "codex": 36,
+      "x": -130.5148,
+      "y": 145.2377,
+      "radius_km": 28485.3,
+      "active_towers": 4,
+      "atmosphere_thickness_km": 4,
+      "refraction_index": 2.348
+    },
+    {
+      "id": "Planet_195",
+      "codex": 4,
+      "x": -180.9098,
+      "y": -192.5411,
+      "radius_km": 55807.7,
+      "active_towers": 21,
+      "atmosphere_thickness_km": 208.7,
+      "refraction_index": 2.4632
+    },
+    {
+      "id": "Planet_196",
+      "codex": 5,
+      "x": -89.8143,
+      "y": -103.593,
+      "radius_km": 30353.6,
+      "active_towers": 14,
+      "atmosphere_thickness_km": 448,
+      "refraction_index": 1.2646
+    },
+    {
+      "id": "Planet_197",
+      "codex": 6,
+      "x": -102.433,
+      "y": 125.5917,
+      "radius_km": 26967.5,
+      "active_towers": 27,
+      "atmosphere_thickness_km": 387.8,
+      "refraction_index": 1.7178
+    },
+    {
+      "id": "Planet_198",
+      "codex": 8,
+      "x": 79.0795,
+      "y": -220.1077,
+      "radius_km": 14031.8,
+      "active_towers": 30,
+      "atmosphere_thickness_km": 198.9,
+      "refraction_index": 2.7634
+    },
+    {
+      "id": "Planet_199",
+      "codex": 10,
+      "x": 92.9368,
+      "y": 176.1593,
+      "radius_km": 5727.6,
+      "active_towers": 35,
+      "atmosphere_thickness_km": 223.6,
+      "refraction_index": 2.5509
+    },
+    {
+      "id": "Planet_200",
+      "codex": 12,
+      "x": -43.1474,
+      "y": 134.0542,
+      "radius_km": 29039.2,
+      "active_towers": 21,
+      "atmosphere_thickness_km": 335.3,
+      "refraction_index": 2.0085
+    }
+  ]
+}

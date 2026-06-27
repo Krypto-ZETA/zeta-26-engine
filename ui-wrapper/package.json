@@ -1,0 +1,13 @@
+{
+  "name": "zeta-26-ui-wrapper",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "bun test --timeout 60000",
+    "test:unit": "bun test tests/wasm.test.ts --timeout 60000",
+    "dev": "echo 'UI dev server not yet implemented'"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  }
+}

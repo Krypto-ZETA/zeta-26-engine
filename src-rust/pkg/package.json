@@ -1,0 +1,15 @@
+{
+  "name": "zeta-26-engine",
+  "type": "module",
+  "version": "1.0.0",
+  "files": [
+    "zeta_26_engine_bg.wasm",
+    "zeta_26_engine.js",
+    "zeta_26_engine.d.ts"
+  ],
+  "main": "zeta_26_engine.js",
+  "types": "zeta_26_engine.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
