@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      - name: Install wasm-pack
+        run: cargo install wasm-pack
+      - name: Rust tests
+        run: cd src-rust && cargo test
+      - name: Clippy
+        run: cd src-rust && cargo clippy --all-targets -- -D warnings
+      - name: Build WASM
+        run: cd src-rust && wasm-pack build --target web --release
+
+  typescript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - name: Install dependencies
+        run: cd ui-wrapper && bun install
+      - name: WASM health tests
+        run: cd ui-wrapper && bun run test:wasm-health
+      - name: Security tests
+        run: cd ui-wrapper && bun run test:security
+      - name: Full test suite
+        run: cd ui-wrapper && bun test --timeout 60000

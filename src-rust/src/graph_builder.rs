@@ -15,6 +15,7 @@ pub struct NetworkGraph {
     pub alive_mask: Vec<u64>,
     pub cache_gen: Cell<u64>,
     pub nodes: Vec<PlanetNode>,
+    pub adj: Vec<Vec<usize>>,
     #[allow(dead_code)]
     pub meta: UniverseMetadata,
 }
@@ -163,6 +164,16 @@ pub fn build_graph(config: UniverseConfig) -> NetworkGraph {
     }
     let cache_gen = Cell::new(0);
 
+    let mut adj: Vec<Vec<usize>> = vec![Vec::new(); n];
+    for i in 0..n {
+        for j in (i + 1)..n {
+            if tv_matrix[i * n + j].is_finite() {
+                adj[i].push(j);
+                adj[j].push(i);
+            }
+        }
+    }
+
     NetworkGraph {
         n,
         node_ids,
@@ -174,6 +185,7 @@ pub fn build_graph(config: UniverseConfig) -> NetworkGraph {
         alive_mask,
         cache_gen,
         nodes: config.nodes,
+        adj,
         meta,
     }
 }

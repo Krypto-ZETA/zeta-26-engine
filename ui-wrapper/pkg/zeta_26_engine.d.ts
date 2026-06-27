@@ -46,9 +46,9 @@ export interface InitOutput {
     readonly calculate_route: (a: number, b: number, c: number, d: number, e: number, f: number, g: number) => void;
     readonly decode_payload: (a: number, b: number, c: number, d: number) => void;
     readonly encode_payload: (a: number, b: number, c: number, d: number) => void;
-    readonly get_active_edges: (a: number) => void;
+    readonly get_active_edges: () => number;
     readonly get_active_edges_len: () => number;
-    readonly get_active_edges_ptr: (a: number) => void;
+    readonly get_active_edges_ptr: () => number;
     readonly get_alive_mask: (a: number) => void;
     readonly get_node_ids: (a: number) => void;
     readonly get_node_positions: (a: number) => void;

@@ -29,9 +29,15 @@
 
 | Suite | Tests | Assertions | Status |
 |-------|-------|-----------|--------|
-| Rust unit + stress | 63 | — | PASS |
-| TypeScript integration | 45 | 35,845 | PASS |
-| Total | 108 | 35,845+ | PASS |
+| Rust unit + stress | 65 | — | PASS |
+| TypeScript unit | 29 | 500+ | PASS |
+| TypeScript system | 3 | 100+ | PASS |
+| TypeScript stress | 5 | 30,000+ | PASS |
+| TypeScript benchmarks | 10 | 20,000+ | PASS |
+| TypeScript multiverse (200p) | 31 | 1000+ | PASS |
+| TypeScript health | 15 | 100+ | PASS |
+| TypeScript security | 22 | 200+ | PASS |
+| Total | 180 | 35,845+ | PASS |
 
 ## Speed Context
 

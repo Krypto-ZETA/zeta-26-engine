@@ -1,10 +1,23 @@
-# Rust build artifacts
+# Rust
 src-rust/target/
 
 # Dependencies
 node_modules/
 
-# OS files
+# Next.js
+ui-wrapper/.next/
+ui-wrapper/out/
+
+# TypeScript
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS
 .DS_Store
 Thumbs.db
 Desktop.ini
@@ -16,5 +29,8 @@ Desktop.ini
 *.swo
 *~
 
-# Editor backup files
+# Editor
 *.bak
+
+# Temp
+.mimocode/

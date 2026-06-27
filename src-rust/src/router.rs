@@ -38,8 +38,14 @@ pub struct HopLogEntry {
     pub tower_exit: Option<usize>,
     pub payload_state: String,
     pub tp_ms: f64,
+    pub fiber_transit_ms: f64,
+    pub tower_delay_ms: f64,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub tv_from_prev_ms: Option<f64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub atmospheric_refraction_ms: Option<f64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub void_transmission_ms: Option<f64>,
 }
 
 #[derive(Debug, Clone, serde::Serialize)]
@@ -49,11 +55,7 @@ pub struct RouteResult {
     pub current_id: String,
     pub payload: String,
     pub hop_log: Vec<HopLogEntry>,
-    #[allow(dead_code)]
-    #[serde(skip)]
     pub path: Vec<usize>,
-    #[allow(dead_code)]
-    #[serde(skip)]
     pub total_latency_ms: f64,
 }
 
@@ -87,20 +89,31 @@ fn build_hop_log(
             (entry_tower, exit_tower)
         };
 
-        let tp = graph.get_tp(planet_idx, entry_tower, exit_tower);
+        let (fiber_transit_ms, tower_delay_ms) = crate::physics_engine::crust_transit_components(
+            &graph.nodes[planet_idx], entry_tower, exit_tower, &graph.meta,
+        );
+        let tp = fiber_transit_ms + tower_delay_ms;
         total_latency += tp;
 
-        let tv_from_prev = if seg_idx > 0 {
+        let (tv_from_prev, atmospheric_refraction_ms, void_transmission_ms) = if seg_idx > 0 {
             let prev_idx = path[seg_idx - 1];
             let tv = graph.get_tv(prev_idx, planet_idx);
             if tv.is_finite() {
                 total_latency += tv;
-                Some(tv)
+                let l_km = crate::physics_engine::void_distance(
+                    &graph.nodes[prev_idx], &graph.nodes[planet_idx],
+                    graph.meta.coordinate_scale_unit_km,
+                );
+                let (atmo, void) = crate::physics_engine::void_travel_components(
+                    &graph.nodes[prev_idx], &graph.nodes[planet_idx], l_km,
+                    graph.meta.speed_of_light_kms,
+                );
+                (Some(tv), Some(atmo), Some(void))
             } else {
-                None
+                (None, None, None)
             }
         } else {
-            None
+            (None, None, None)
         };
 
         let (tower_entry, tower_exit) = if path.len() == 1 {
@@ -114,15 +127,15 @@ fn build_hop_log(
         };
 
         pstate_buf.clear();
-        if seg_idx == path.len() - 1 {
-            use std::fmt::Write;
-            let _ = write!(&mut pstate_buf, "{} (ASCII)", payload);
+        use std::fmt::Write;
+        let is_dest = seg_idx == path.len() - 1;
+        if path.len() == 1 || is_dest {
+            let _ = write!(&mut pstate_buf, "{}", payload);
         } else {
             let next_idx = path[seg_idx + 1];
-            let next_codex = graph.nodes[next_idx].codex;
-            let encoded = codex_translator::encode_for_transmission(payload, next_codex);
-            use std::fmt::Write;
-            let _ = write!(&mut pstate_buf, "{} (Base{})", encoded, next_codex);
+            let dest_codex = graph.nodes[next_idx].codex;
+            let encoded = codex_translator::encode_for_transmission(payload, dest_codex);
+            let _ = write!(&mut pstate_buf, "{} (Base{})", encoded, dest_codex);
         }
 
         hop_log.push(HopLogEntry {
@@ -131,64 +144,112 @@ fn build_hop_log(
             tower_exit,
             payload_state: pstate_buf.clone(),
             tp_ms: tp,
+            fiber_transit_ms,
+            tower_delay_ms,
             tv_from_prev_ms: tv_from_prev,
+            atmospheric_refraction_ms,
+            void_transmission_ms,
         });
     }
 
     (hop_log, total_latency)
 }
 
-fn shortest_path_tree(graph: &NetworkGraph, src: usize) -> Vec<Option<usize>> {
+fn dijkstra(graph: &NetworkGraph, src: usize) -> (Vec<f64>, Vec<Option<usize>>) {
     let n = graph.n;
-    let mut dist = vec![f64::INFINITY; n];
-    let mut prev = vec![None; n];
-    dist[src] = 0.0;
+    let inf = f64::INFINITY;
+    let mut dist = vec![inf; n * n];
+    let mut prev_state = vec![None::<usize>; n * n];
+
+    let src_state = src * n + src;
+    dist[src_state] = 0.0;
 
     let mut heap = BinaryHeap::new();
-    heap.push(Reverse((TotalF64(0.0), src)));
+    heap.push(Reverse((TotalF64(0.0), src_state)));
 
-    while let Some(Reverse((cost, u))) = heap.pop() {
-        if cost.0 > dist[u] {
+    while let Some(Reverse((cost, state))) = heap.pop() {
+        let u = state / n;
+        let prev_u = state % n;
+
+        if cost.0 > dist[state] {
             continue;
         }
-        for v in 0..n {
-            if u == v || !graph.is_alive(v) {
+
+        for &v in &graph.adj[u] {
+            if !graph.is_alive(v) {
                 continue;
             }
-            let edge_w = graph.get_tv(u, v);
-            if !edge_w.is_finite() {
+            let tv = graph.get_tv(u, v);
+            if !tv.is_finite() {
                 continue;
             }
-            let next = dist[u] + edge_w;
-            if next < dist[v] {
-                dist[v] = next;
-                prev[v] = Some(u);
-                heap.push(Reverse((TotalF64(next), v)));
+
+            let (entry, exit) = if u == src {
+                let (t_exit, _) = graph.get_closest_towers(u, v);
+                (t_exit, t_exit)
+            } else {
+                let (_, t_entry) = graph.get_closest_towers(prev_u, u);
+                let (t_exit, _) = graph.get_closest_towers(u, v);
+                (t_entry, t_exit)
+            };
+            let tp_u = graph.get_tp(u, entry, exit);
+
+            let next_cost = cost.0 + tp_u + tv;
+            let next_state = v * n + u;
+
+            if next_cost < dist[next_state] {
+                dist[next_state] = next_cost;
+                prev_state[next_state] = Some(state);
+                heap.push(Reverse((TotalF64(next_cost), next_state)));
             }
         }
     }
 
-    prev
+    (dist, prev_state)
 }
 
-fn reconstruct_path(prev: &[Option<usize>], src: usize, dst: usize) -> Vec<usize> {
-    let mut path = Vec::new();
-    let mut current = dst;
-    if prev[current].is_none() && current != src {
-        return path;
-    }
-    path.push(current);
-    while current != src {
-        match prev[current] {
-            Some(p) => {
-                path.push(p);
-                current = p;
-            }
-            None => return Vec::new(),
+fn reconstruct_path(
+    dist: &[f64],
+    prev_state: &[Option<usize>],
+    graph: &NetworkGraph,
+    _src: usize,
+    dst: usize,
+) -> Option<(Vec<usize>, f64)> {
+    let n = graph.n;
+    let mut best_state = None;
+    let mut best_total = f64::INFINITY;
+
+    for p in 0..n {
+        if p == dst {
+            continue;
+        }
+        let state = dst * n + p;
+        if dist[state].is_infinite() {
+            continue;
+        }
+        let (_, entry) = graph.get_closest_towers(p, dst);
+        let tp_dst = graph.get_tp(dst, entry, entry);
+        let total = dist[state] + tp_dst;
+        if total < best_total {
+            best_total = total;
+            best_state = Some(state);
         }
     }
+
+    let mut state = best_state?;
+    let mut path = Vec::new();
+
+    loop {
+        let node = state / n;
+        path.push(node);
+        match prev_state[state] {
+            Some(s) => state = s,
+            None => break,
+        }
+    }
+
     path.reverse();
-    path
+    Some((path, best_total))
 }
 
 
@@ -242,13 +303,16 @@ pub fn calculate_route(
         return Some(result);
     }
 
-    let prev = shortest_path_tree(graph, src_idx);
-    let path = reconstruct_path(&prev, src_idx, dst_idx);
-    if path.is_empty() || path[0] != src_idx || path[path.len() - 1] != dst_idx {
+    let (dist, prev_state) = dijkstra(graph, src_idx);
+    let (path, total_latency) = match reconstruct_path(&dist, &prev_state, graph, src_idx, dst_idx) {
+        Some(r) => r,
+        None => return None,
+    };
+    if path[0] != src_idx || path[path.len() - 1] != dst_idx {
         return None;
     }
 
-    let (hop_log, total_latency) = build_hop_log(graph, &path, payload, origin_id, dest_id);
+    let (hop_log, _) = build_hop_log(graph, &path, payload, origin_id, dest_id);
     let current_id = graph.node_ids[path[path.len() - 1]].clone();
     let result = RouteResult {
         origin_id: origin_id.to_string(),
@@ -383,10 +447,12 @@ mod tests {
         assert_eq!(result.hop_log.len(), 2);
         assert_eq!(result.hop_log[0].tower_entry, None);
         assert!(result.hop_log[0].tower_exit.is_some());
-        assert!(result.hop_log[0].payload_state.contains("Base5"));
+        assert!(result.hop_log[0].payload_state.contains("Base5"),
+            "origin should encode for next planet: {}", result.hop_log[0].payload_state);
         assert!(result.hop_log[1].tower_entry.is_some());
         assert_eq!(result.hop_log[1].tower_exit, None);
-        assert!(result.hop_log[1].payload_state.contains("(ASCII)"));
+        assert_eq!(result.hop_log[1].payload_state, "Hello",
+            "destination should show decoded literal");
         assert!(result.hop_log[1].tv_from_prev_ms.is_some());
     }
 
@@ -405,9 +471,9 @@ mod tests {
         assert!(result.hop_log.first().unwrap().tower_entry.is_none());
         assert!(result.hop_log.last().unwrap().tower_exit.is_none());
         assert!(result.hop_log.first().unwrap().payload_state.contains("Base"),
-            "first hop payload_state (should be BaseN): {}", result.hop_log.first().unwrap().payload_state);
-        assert!(result.hop_log.last().unwrap().payload_state.contains("(ASCII)"),
-            "last hop payload_state (should be ASCII): {}", result.hop_log.last().unwrap().payload_state);
+            "origin should encode for next planet: {}", result.hop_log.first().unwrap().payload_state);
+        assert_eq!(result.hop_log.last().unwrap().payload_state, "Hello",
+            "destination should show decoded literal");
     }
 
     #[test]
@@ -475,10 +541,12 @@ mod tests {
         assert_eq!(r1.payload, "Hello");
         assert_eq!(r2.payload, "World");
         assert!(r1.hop_log[0].payload_state.contains("Base"),
-            "hop[0] should encode for next planet: {}", r1.hop_log[0].payload_state);
+            "origin should encode for next planet: {}", r1.hop_log[0].payload_state);
         assert_ne!(r1.hop_log[0].payload_state, r2.hop_log[0].payload_state,
             "different payloads should produce different payload_state");
-        assert!(r1.hop_log[1].payload_state.contains("(ASCII)"));
-        assert!(r2.hop_log[1].payload_state.contains("(ASCII)"));
+        assert_eq!(r1.hop_log[1].payload_state, "Hello",
+            "destination should show decoded literal");
+        assert_eq!(r2.hop_log[1].payload_state, "World",
+            "destination should show decoded literal");
     }
 }

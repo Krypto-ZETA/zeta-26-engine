@@ -3,11 +3,25 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "test": "bun test --timeout 60000",
     "test:unit": "bun test tests/wasm.test.ts --timeout 60000",
-    "dev": "echo 'UI dev server not yet implemented'"
+    "test:security": "bun test tests/security.test.ts --timeout 60000",
+    "test:wasm-health": "bun test tests/wasm-health.test.ts --timeout 30000",
+    "lint": "bunx eslint . --ext .ts,.tsx",
+    "typecheck": "bunx tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zustand": "^5.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.7.0"
+    "typescript": "^5.7.0",
+    "@types/react": "^19.0.0",
+    "@types/node": "^22.0.0"
   }
 }

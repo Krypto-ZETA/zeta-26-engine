@@ -11,9 +11,16 @@ pub fn void_distance(a: &PlanetNode, b: &PlanetNode, scale_km: f64) -> f64 {
 }
 
 pub fn void_travel_time_ms(a: &PlanetNode, b: &PlanetNode, l_km: f64, c_kms: f64) -> f64 {
+    let (atmo, void) = void_travel_components(a, b, l_km, c_kms);
+    atmo + void
+}
+
+pub fn void_travel_components(a: &PlanetNode, b: &PlanetNode, l_km: f64, c_kms: f64) -> (f64, f64) {
     let h1n1 = a.atmosphere_thickness_km * a.refraction_index;
     let h2n2 = b.atmosphere_thickness_km * b.refraction_index;
-    ((h1n1 + h2n2 + l_km) / c_kms) * 1000.0
+    let atmospheric_refraction_ms = ((h1n1 + h2n2) / c_kms) * 1000.0;
+    let void_transmission_ms = (l_km / c_kms) * 1000.0;
+    (atmospheric_refraction_ms, void_transmission_ms)
 }
 
 pub fn crust_transit_ms(
@@ -22,6 +29,16 @@ pub fn crust_transit_ms(
     exit_tower: usize,
     meta: &UniverseMetadata,
 ) -> f64 {
+    let (fiber, tower) = crust_transit_components(planet, entry_tower, exit_tower, meta);
+    fiber + tower
+}
+
+pub fn crust_transit_components(
+    planet: &PlanetNode,
+    entry_tower: usize,
+    exit_tower: usize,
+    meta: &UniverseMetadata,
+) -> (f64, f64) {
     let n = planet.active_towers;
     let s = if entry_tower == exit_tower {
         0
@@ -31,9 +48,11 @@ pub fn crust_transit_ms(
         cw.min(ccw)
     };
     let m = if entry_tower == exit_tower { 1 } else { s + 1 };
-    let travel_s = (2.0 * PI * planet.radius_km * s as f64)
-        / (n as f64 * meta.fiber_speed_fraction * meta.speed_of_light_kms);
-    travel_s * 1000.0 + m as f64 * meta.tower_processing_delay_ms
+    let fiber_transit_ms = (2.0 * PI * planet.radius_km * s as f64)
+        / (n as f64 * meta.fiber_speed_fraction * meta.speed_of_light_kms)
+        * 1000.0;
+    let tower_delay_ms = m as f64 * meta.tower_processing_delay_ms;
+    (fiber_transit_ms, tower_delay_ms)
 }
 
 #[cfg(test)]
@@ -150,6 +169,44 @@ mod tests {
                 let l = void_distance(&cfg.nodes[i], &cfg.nodes[j], s);
                 let tv = void_travel_time_ms(&cfg.nodes[i], &cfg.nodes[j], l, c);
                 assert!(tv >= 0.0, "Tv negative for {}->{}", cfg.nodes[i].id, cfg.nodes[j].id);
+            }
+        }
+    }
+
+    #[test]
+    fn test_tp_components_sum_to_total() {
+        let cfg = config();
+        let m = &cfg.universe_metadata;
+        for planet in &cfg.nodes {
+            let t = planet.active_towers;
+            for e in 0..t {
+                for x in 0..t {
+                    let total = crust_transit_ms(planet, e, x, m);
+                    let (fiber, tower) = crust_transit_components(planet, e, x, m);
+                    let diff = (total - (fiber + tower)).abs();
+                    assert!(diff < 1e-10, "Tp components don't sum: {} != {} + {}", total, fiber, tower);
+                    assert!(fiber >= 0.0, "fiber_transit negative");
+                    assert!(tower >= 0.0, "tower_delay negative");
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn test_tv_components_sum_to_total() {
+        let cfg = config();
+        let m = &cfg.universe_metadata;
+        let s = m.coordinate_scale_unit_km;
+        let c = m.speed_of_light_kms;
+        for i in 0..cfg.nodes.len() {
+            for j in i + 1..cfg.nodes.len() {
+                let l = void_distance(&cfg.nodes[i], &cfg.nodes[j], s);
+                let tv = void_travel_time_ms(&cfg.nodes[i], &cfg.nodes[j], l, c);
+                let (atmo, void) = void_travel_components(&cfg.nodes[i], &cfg.nodes[j], l, c);
+                let diff = (tv - (atmo + void)).abs();
+                assert!(diff < 1e-10, "Tv components don't sum: {} != {} + {}", tv, atmo, void);
+                assert!(atmo >= 0.0, "atmospheric_refraction negative");
+                assert!(void >= 0.0, "void_transmission negative");
             }
         }
     }

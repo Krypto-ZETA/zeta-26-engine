@@ -138,13 +138,10 @@ pub fn get_node_positions_len() -> usize {
 }
 
 #[wasm_bindgen]
-pub fn get_active_edges() -> Result<js_sys::Uint32Array, JsValue> {
+pub fn get_active_edges() -> js_sys::Uint32Array {
     EDGE_CACHE.with(|ec| {
         let cache = ec.borrow();
-        if cache.is_empty() {
-            return Err(JsValue::from_str("config not loaded"));
-        }
-        Ok(js_sys::Uint32Array::from(&cache[..]))
+        js_sys::Uint32Array::from(&cache[..])
     })
 }
 
@@ -152,13 +149,10 @@ pub fn get_active_edges() -> Result<js_sys::Uint32Array, JsValue> {
 /// SAFETY: Pointer is invalidated by load_config(), kill_node(), or resurrect_node().
 /// Do not cache this pointer across those calls.
 #[wasm_bindgen]
-pub fn get_active_edges_ptr() -> Result<*const u32, JsValue> {
+pub fn get_active_edges_ptr() -> *const u32 {
     EDGE_CACHE.with(|ec| {
         let cache = ec.borrow();
-        if cache.is_empty() {
-            return Err(JsValue::from_str("config not loaded"));
-        }
-        Ok(cache.as_ptr())
+        cache.as_ptr()
     })
 }
 
@@ -527,15 +521,15 @@ mod diagnostics {
         assert_eq!(route.hop_log[0].tower_entry, None);
         assert_eq!(route.hop_log.last().unwrap().tower_exit, None);
         assert!(route.hop_log[0].payload_state.contains("Base"),
-            "origin encodes for next hop: {}", route.hop_log[0].payload_state);
-        assert!(route.hop_log.last().unwrap().payload_state.contains("(ASCII)"),
-            "destination shows ASCII: {}", route.hop_log.last().unwrap().payload_state);
+            "origin encodes for next planet: {}", route.hop_log[0].payload_state);
+        assert_eq!(route.hop_log.last().unwrap().payload_state, "Hello",
+            "destination shows decoded literal");
         println!("  route: {} hops, {:.3} ms total", route.hop_log.len(), route.total_latency_ms);
 
         sub("Self-route validation...");
         let self_route = router::calculate_route(&graph, 0, 0, "Planet_1", "Planet_1", "self").unwrap();
         assert_eq!(self_route.hop_log.len(), 1);
-        assert!(self_route.hop_log[0].payload_state.contains("(ASCII)"));
+        assert_eq!(self_route.hop_log[0].payload_state, "self");
 
         sub("Kill/resurrect cycle...");
         let mut g2 = build_graph(config.clone());

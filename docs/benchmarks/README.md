@@ -21,7 +21,7 @@
 | Config parse (6 nodes) | **63.7 µs** | ⚡ Fast |
 | Encode + decode pair | **4.3 µs** | ⚡ Fast |
 | Full WASM binary | **116.6 KB** | ⚡ Tiny |
-| Total test suite | **591 ms** (45 tests, 35,845 assertions) | ⚡ Fast |
+| Total test suite | **591 ms** (180 tests, 35,845+ assertions) | ⚡ Fast |
 
 ---
 
@@ -102,13 +102,15 @@ The alive mask approach is **30–160x faster** for kill/resurrect than alternat
 
 | Suite | Tests | Assertions | Status |
 |-------|-------|-----------|--------|
-| Rust unit + stress | 63 | — | ✅ 0 warnings |
-| TypeScript unit | 18 | 500+ | ✅ |
+| Rust unit + stress | 65 | — | ✅ 0 warnings |
+| TypeScript unit | 29 | 500+ | ✅ |
 | TypeScript system | 3 | 100+ | ✅ |
 | TypeScript stress | 5 | 30,000+ | ✅ |
 | TypeScript benchmarks | 10 | 20,000+ | ✅ |
-| 200-planet integration | 1 | 50+ | ✅ |
-| **Total** | **100** | **35,845+** | **✅** |
+| TypeScript multiverse (200p) | 31 | 1000+ | ✅ |
+| TypeScript health | 15 | 100+ | ✅ |
+| TypeScript security | 22 | 200+ | ✅ |
+| **Total** | **180** | **35,845+** | **✅** |
 
 ---
 
