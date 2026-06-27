@@ -1,4 +1,3 @@
-use std::cell::Cell;
 use std::collections::HashMap;
 use crate::config_parser::{PlanetNode, UniverseConfig, UniverseMetadata};
 use crate::physics_engine::{crust_transit_ms, void_distance, void_travel_time_ms};
@@ -13,7 +12,6 @@ pub struct NetworkGraph {
     pub tower_lut: Vec<Vec<(usize, usize)>>,
     pub tp_cache: Vec<Vec<f64>>,
     pub alive_mask: Vec<u64>,
-    pub cache_gen: Cell<u64>,
     pub nodes: Vec<PlanetNode>,
     pub adj: Vec<Vec<usize>>,
     #[allow(dead_code)]
@@ -33,14 +31,12 @@ impl NetworkGraph {
     pub fn kill_node(&mut self, idx: usize) {
         if idx < self.n {
             self.alive_mask[idx / 64] &= !(1u64 << (idx % 64));
-            self.cache_gen.set(self.cache_gen.get() + 1);
         }
     }
 
     pub fn resurrect_node(&mut self, idx: usize) {
         if idx < self.n {
             self.alive_mask[idx / 64] |= 1u64 << (idx % 64);
-            self.cache_gen.set(self.cache_gen.get() + 1);
         }
     }
 
@@ -162,8 +158,6 @@ pub fn build_graph(config: UniverseConfig) -> NetworkGraph {
     for i in 0..n {
         alive_mask[i / 64] |= 1u64 << (i % 64);
     }
-    let cache_gen = Cell::new(0);
-
     let mut adj: Vec<Vec<usize>> = vec![Vec::new(); n];
     for i in 0..n {
         for j in (i + 1)..n {
@@ -183,7 +177,6 @@ pub fn build_graph(config: UniverseConfig) -> NetworkGraph {
         tower_lut,
         tp_cache,
         alive_mask,
-        cache_gen,
         nodes: config.nodes,
         adj,
         meta,

@@ -43,9 +43,6 @@ pub fn load_config(json: &str) -> Result<(), JsValue> {
         }
     });
 
-    // Clear stale route results from previous config
-    router::clear_route_cache();
-
     GRAPH.with(|g| *g.borrow_mut() = Some(graph));
     Ok(())
 }
@@ -463,13 +460,13 @@ mod diagnostics {
         let all_pairs_time = start.elapsed().as_secs_f64() / n_pairs as f64;
         println!("  All-pairs route   : {:>8.1} µs/op  ({} pairs)", all_pairs_time * 1_000_000.0, n_pairs);
 
-        // Route cache hit benchmark
+        // Route benchmark (no cache)
         let start = Instant::now();
         for _ in 0..n_route {
             let _ = router::calculate_route(&graph, src, dst, "Aegis", "Caelum", "Hello");
         }
-        let cache_time = start.elapsed().as_secs_f64() / n_route as f64;
-        println!("  Route cache hit   : {:>8.1} ns/op  ({} iterations)", cache_time * 1_000_000_000.0, n_route);
+        let route_bench_time = start.elapsed().as_secs_f64() / n_route as f64;
+        println!("  Route (no cache)  : {:>8.1} ns/op  ({} iterations)", route_bench_time * 1_000_000_000.0, n_route);
 
         // Full pipeline: parse + build + route
         let n_pipeline = 100;
@@ -522,14 +519,15 @@ mod diagnostics {
         assert_eq!(route.hop_log.last().unwrap().tower_exit, None);
         assert!(route.hop_log[0].payload_state.contains("Base"),
             "origin encodes for next planet: {}", route.hop_log[0].payload_state);
-        assert_eq!(route.hop_log.last().unwrap().payload_state, "Hello",
-            "destination shows decoded literal");
+        assert!(route.hop_log.last().unwrap().payload_state.contains("(Base"),
+            "destination should show encoded in own codex: {}", route.hop_log.last().unwrap().payload_state);
         println!("  route: {} hops, {:.3} ms total", route.hop_log.len(), route.total_latency_ms);
 
         sub("Self-route validation...");
         let self_route = router::calculate_route(&graph, 0, 0, "Planet_1", "Planet_1", "self").unwrap();
         assert_eq!(self_route.hop_log.len(), 1);
-        assert_eq!(self_route.hop_log[0].payload_state, "self");
+        assert!(self_route.hop_log[0].payload_state.contains("(Base"),
+            "self-route should show encoded in own codex: {}", self_route.hop_log[0].payload_state);
 
         sub("Kill/resurrect cycle...");
         let mut g2 = build_graph(config.clone());

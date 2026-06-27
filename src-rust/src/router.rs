@@ -1,9 +1,7 @@
 #![allow(clippy::missing_const_for_thread_local)]
-use std::cell::RefCell;
 use std::cmp::Ordering;
 use std::cmp::Reverse;
 use std::collections::BinaryHeap;
-use std::collections::HashMap;
 use crate::codex_translator;
 use crate::graph_builder::NetworkGraph;
 
@@ -22,11 +20,6 @@ impl Ord for TotalF64 {
     fn cmp(&self, other: &Self) -> Ordering {
         self.0.total_cmp(&other.0)
     }
-}
-
-thread_local! {
-    #[allow(clippy::type_complexity)]
-    static ROUTE_CACHE: RefCell<HashMap<(usize, usize), (u64, Vec<usize>, f64)>> = RefCell::new(HashMap::new());
 }
 
 #[derive(Debug, Clone, serde::Serialize)]
@@ -57,10 +50,6 @@ pub struct RouteResult {
     pub hop_log: Vec<HopLogEntry>,
     pub path: Vec<usize>,
     pub total_latency_ms: f64,
-}
-
-pub fn clear_route_cache() {
-    ROUTE_CACHE.with(|c| c.borrow_mut().clear());
 }
 
 fn build_hop_log(
@@ -129,14 +118,14 @@ fn build_hop_log(
         pstate_buf.clear();
         use std::fmt::Write;
         let is_dest = seg_idx == path.len() - 1;
-        if path.len() == 1 || is_dest {
-            let _ = write!(&mut pstate_buf, "{}", payload);
+        let encode_codex = if is_dest {
+            graph.nodes[planet_idx].codex
         } else {
             let next_idx = path[seg_idx + 1];
-            let dest_codex = graph.nodes[next_idx].codex;
-            let encoded = codex_translator::encode_for_transmission(payload, dest_codex);
-            let _ = write!(&mut pstate_buf, "{} (Base{})", encoded, dest_codex);
-        }
+            graph.nodes[next_idx].codex
+        };
+        let encoded = codex_translator::encode_for_transmission(payload, encode_codex);
+        let _ = write!(&mut pstate_buf, "{} (Base{})", encoded, encode_codex);
 
         hop_log.push(HopLogEntry {
             planet: graph.node_ids[planet_idx].clone(),
@@ -265,42 +254,18 @@ pub fn calculate_route(
         return None;
     }
 
-    let gen = graph.cache_gen.get();
-    let cache_key = (src_idx, dst_idx);
-
-    if let Some((cached_gen, cached_path, cached_latency)) = ROUTE_CACHE.with(|cache| {
-        cache.borrow().get(&cache_key).cloned()
-    }) {
-        if cached_gen == gen {
-            let (hop_log, _) = build_hop_log(graph, &cached_path, payload, origin_id, dest_id);
-            let current_id = graph.node_ids[cached_path[cached_path.len() - 1]].clone();
-            return Some(RouteResult {
-                origin_id: origin_id.to_string(),
-                destination_id: dest_id.to_string(),
-                current_id,
-                payload: payload.to_string(),
-                hop_log,
-                path: cached_path,
-                total_latency_ms: cached_latency,
-            });
-        }
-    }
-
     if src_idx == dst_idx {
-        let tp = graph.get_tp(src_idx, 0, 0);
         let path = vec![src_idx];
-        let (hop_log, _) = build_hop_log(graph, &path, payload, origin_id, dest_id);
-        let result = RouteResult {
+        let (hop_log, total_latency) = build_hop_log(graph, &path, payload, origin_id, dest_id);
+        return Some(RouteResult {
             origin_id: origin_id.to_string(),
             destination_id: dest_id.to_string(),
             current_id: origin_id.to_string(),
             payload: payload.to_string(),
             hop_log,
-            path: path.clone(),
-            total_latency_ms: tp,
-        };
-        ROUTE_CACHE.with(|cache| cache.borrow_mut().insert((src_idx, src_idx), (gen, path, tp)));
-        return Some(result);
+            path,
+            total_latency_ms: total_latency,
+        });
     }
 
     let (dist, prev_state) = dijkstra(graph, src_idx);
@@ -311,17 +276,15 @@ pub fn calculate_route(
 
     let (hop_log, _) = build_hop_log(graph, &path, payload, origin_id, dest_id);
     let current_id = graph.node_ids[path[path.len() - 1]].clone();
-    let result = RouteResult {
+    Some(RouteResult {
         origin_id: origin_id.to_string(),
         destination_id: dest_id.to_string(),
         current_id,
         payload: payload.to_string(),
         hop_log,
-        path: path.clone(),
+        path,
         total_latency_ms: total_latency,
-    };
-    ROUTE_CACHE.with(|cache| cache.borrow_mut().insert(cache_key, (gen, path, total_latency)));
-    Some(result)
+    })
 }
 
 #[cfg(test)]
@@ -448,8 +411,8 @@ mod tests {
             "origin should encode for next planet: {}", result.hop_log[0].payload_state);
         assert!(result.hop_log[1].tower_entry.is_some());
         assert_eq!(result.hop_log[1].tower_exit, None);
-        assert_eq!(result.hop_log[1].payload_state, "Hello",
-            "destination should show decoded literal");
+        assert!(result.hop_log[1].payload_state.contains("(Base"),
+            "destination should show encoded in own codex: {}", result.hop_log[1].payload_state);
         assert!(result.hop_log[1].tv_from_prev_ms.is_some());
     }
 
@@ -469,8 +432,8 @@ mod tests {
         assert!(result.hop_log.last().unwrap().tower_exit.is_none());
         assert!(result.hop_log.first().unwrap().payload_state.contains("Base"),
             "origin should encode for next planet: {}", result.hop_log.first().unwrap().payload_state);
-        assert_eq!(result.hop_log.last().unwrap().payload_state, "Hello",
-            "destination should show decoded literal");
+        assert!(result.hop_log.last().unwrap().payload_state.contains("(Base"),
+            "destination should show encoded in own codex: {}", result.hop_log.last().unwrap().payload_state);
     }
 
     #[test]
@@ -505,14 +468,12 @@ mod tests {
     }
 
     #[test]
-    fn stress_cache_hit_100k() {
+    fn stress_route_100k_direct() {
         let graph = setup_graph();
         let aegis = graph.find_node_idx("Aegis").unwrap();
-        let caelum = graph.find_node_idx("Caelum").unwrap();
-        // Warm cache
-        calculate_route(&graph, aegis, caelum, "Aegis", "Caelum", "warm");
+        let boreas = graph.find_node_idx("Boreas").unwrap();
         for _ in 0..100000 {
-            let r = calculate_route(&graph, aegis, caelum, "Aegis", "Caelum", "cache");
+            let r = calculate_route(&graph, aegis, boreas, "Aegis", "Boreas", "stress");
             assert!(r.is_some());
         }
     }
@@ -529,7 +490,7 @@ mod tests {
     }
 
     #[test]
-    fn test_cache_different_payloads() {
+    fn test_different_payloads() {
         let graph = setup_graph();
         let src = graph.find_node_idx("Aegis").unwrap();
         let dst = graph.find_node_idx("Boreas").unwrap();
@@ -541,9 +502,9 @@ mod tests {
             "origin should encode for next planet: {}", r1.hop_log[0].payload_state);
         assert_ne!(r1.hop_log[0].payload_state, r2.hop_log[0].payload_state,
             "different payloads should produce different payload_state");
-        assert_eq!(r1.hop_log[1].payload_state, "Hello",
-            "destination should show decoded literal");
-        assert_eq!(r2.hop_log[1].payload_state, "World",
-            "destination should show decoded literal");
+        assert!(r1.hop_log[1].payload_state.contains("(Base"),
+            "destination should show encoded in own codex: {}", r1.hop_log[1].payload_state);
+        assert!(r2.hop_log[1].payload_state.contains("(Base"),
+            "destination should show encoded in own codex: {}", r2.hop_log[1].payload_state);
     }
 }

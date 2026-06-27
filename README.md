@@ -16,6 +16,33 @@
 
 A ruthlessly efficient routing protocol to reconnect the Zeta-26 star system. Loads a topology configuration at runtime, computes optimal paths using latency-based physics, translates message payloads per-planet codex, and reroutes around destroyed nodes — all inside a compiled WebAssembly engine.
 
+## Visual Flow
+
+### Step 1 — Landing & Config Upload
+
+![Landing Page](ui-wrapper/public/assets/image.png)
+
+The application starts with a starfield landing page. Drag-and-drop a `universe-config.json` file or click to browse. The WASM engine parses the config, validates all physical constants, builds the adjacency matrix, and computes tower positions — all before the first frame renders.
+
+### Step 2 — Network Visualization
+
+![Network View](ui-wrapper/public/assets/image%201.png)
+
+Once loaded, the full network appears on the canvas. Each planet is rendered with its unique codex-mapped texture. The left sidebar shows all 6 nodes (Aegis, Boreas, Dawn, Elysium, Fenix, Caelum) with kill/resurrect toggles. The Transmit panel lets you select origin, destination, and payload. The right telemetry panel displays real-time latency data.
+
+### Step 3 — Active Routing with Codex Translation
+
+![Active Route](ui-wrapper/public/assets/image%202.png)
+
+Sending "Hello world" from Aegis to Caelum demonstrates the full pipeline:
+
+1. **Aegis (Base 8)** encodes the payload into Boreas's codex (Base 5) before void transmission
+2. **Boreas (Base 5)** decodes to ASCII internally, re-encodes for Fenix (Base 16)
+3. **Fenix (Base 16)** decodes, re-encodes for Caelum (Base 14)
+4. **Caelum (Base 14)** performs final decode — "Hello world" delivered intact
+
+The hop_log on the right shows each planet's entry/exit towers, Tp (crust transit), Tv (void travel), and the payload state at each hop. Dawn and Elysium are killed (red X marks), forcing the route through Boreas and Fenix — dynamic rerouting in action.
+
 ## Challenge Compliance
 
 This project satisfies every requirement of **The Relic Ring Protocol** hackathon challenge:
