@@ -519,15 +519,15 @@ mod diagnostics {
         assert_eq!(route.hop_log.last().unwrap().tower_exit, None);
         assert!(route.hop_log[0].payload_state.contains("Base"),
             "origin encodes for next planet: {}", route.hop_log[0].payload_state);
-        assert!(route.hop_log.last().unwrap().payload_state.contains("(Base"),
-            "destination should show encoded in own codex: {}", route.hop_log.last().unwrap().payload_state);
+        assert_eq!(route.hop_log.last().unwrap().payload_state, "Hello",
+            "destination should show decoded text: {}", route.hop_log.last().unwrap().payload_state);
         println!("  route: {} hops, {:.3} ms total", route.hop_log.len(), route.total_latency_ms);
 
         sub("Self-route validation...");
         let self_route = router::calculate_route(&graph, 0, 0, "Planet_1", "Planet_1", "self").unwrap();
         assert_eq!(self_route.hop_log.len(), 1);
-        assert!(self_route.hop_log[0].payload_state.contains("(Base"),
-            "self-route should show encoded in own codex: {}", self_route.hop_log[0].payload_state);
+        assert_eq!(self_route.hop_log[0].payload_state, "self",
+            "self-route should show decoded text: {}", self_route.hop_log[0].payload_state);
 
         sub("Kill/resurrect cycle...");
         let mut g2 = build_graph(config.clone());

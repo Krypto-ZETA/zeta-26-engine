@@ -147,7 +147,7 @@ describe("Unit: calculate_route", () => {
     const json = engine.calculate_route("Aegis", "Boreas", "Hello");
     const pkt = JSON.parse(json) as RouteResult;
     expect(pkt.hop_log[0].payload_state).toContain("Base");
-    expect(pkt.hop_log[pkt.hop_log.length - 1].payload_state).toContain("(Base");
+    expect(pkt.hop_log[pkt.hop_log.length - 1].payload_state).toBe("Hello");
   });
 
   test("first hop has no tv_from_prev_ms", () => {

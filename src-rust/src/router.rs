@@ -118,14 +118,14 @@ fn build_hop_log(
         pstate_buf.clear();
         use std::fmt::Write;
         let is_dest = seg_idx == path.len() - 1;
-        let encode_codex = if is_dest {
-            graph.nodes[planet_idx].codex
+        if is_dest {
+            let _ = write!(&mut pstate_buf, "{}", payload);
         } else {
             let next_idx = path[seg_idx + 1];
-            graph.nodes[next_idx].codex
-        };
-        let encoded = codex_translator::encode_for_transmission(payload, encode_codex);
-        let _ = write!(&mut pstate_buf, "{} (Base{})", encoded, encode_codex);
+            let dest_codex = graph.nodes[next_idx].codex;
+            let encoded = codex_translator::encode_for_transmission(payload, dest_codex);
+            let _ = write!(&mut pstate_buf, "{} (Base{})", encoded, dest_codex);
+        }
 
         hop_log.push(HopLogEntry {
             planet: graph.node_ids[planet_idx].clone(),
@@ -411,8 +411,8 @@ mod tests {
             "origin should encode for next planet: {}", result.hop_log[0].payload_state);
         assert!(result.hop_log[1].tower_entry.is_some());
         assert_eq!(result.hop_log[1].tower_exit, None);
-        assert!(result.hop_log[1].payload_state.contains("(Base"),
-            "destination should show encoded in own codex: {}", result.hop_log[1].payload_state);
+        assert_eq!(result.hop_log[1].payload_state, "Hello",
+            "destination should show decoded text: {}", result.hop_log[1].payload_state);
         assert!(result.hop_log[1].tv_from_prev_ms.is_some());
     }
 
@@ -432,8 +432,8 @@ mod tests {
         assert!(result.hop_log.last().unwrap().tower_exit.is_none());
         assert!(result.hop_log.first().unwrap().payload_state.contains("Base"),
             "origin should encode for next planet: {}", result.hop_log.first().unwrap().payload_state);
-        assert!(result.hop_log.last().unwrap().payload_state.contains("(Base"),
-            "destination should show encoded in own codex: {}", result.hop_log.last().unwrap().payload_state);
+        assert_eq!(result.hop_log.last().unwrap().payload_state, "Hello",
+            "destination should show decoded text: {}", result.hop_log.last().unwrap().payload_state);
     }
 
     #[test]
@@ -502,9 +502,9 @@ mod tests {
             "origin should encode for next planet: {}", r1.hop_log[0].payload_state);
         assert_ne!(r1.hop_log[0].payload_state, r2.hop_log[0].payload_state,
             "different payloads should produce different payload_state");
-        assert!(r1.hop_log[1].payload_state.contains("(Base"),
-            "destination should show encoded in own codex: {}", r1.hop_log[1].payload_state);
-        assert!(r2.hop_log[1].payload_state.contains("(Base"),
-            "destination should show encoded in own codex: {}", r2.hop_log[1].payload_state);
+        assert_eq!(r1.hop_log[1].payload_state, "Hello",
+            "destination should show decoded text: {}", r1.hop_log[1].payload_state);
+        assert_eq!(r2.hop_log[1].payload_state, "World",
+            "destination should show decoded text: {}", r2.hop_log[1].payload_state);
     }
 }
