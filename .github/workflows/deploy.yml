@@ -43,7 +43,9 @@ jobs:
         working-directory: ui-wrapper
 
       - name: Build Next.js static export
-        run: bun run build
+        run: |
+          sed -i "s|output: 'export',|output: 'export',\n  basePath: '/zeta-26-engine',|" next.config.js
+          bun run build
         working-directory: ui-wrapper
 
       - name: Upload artifact
